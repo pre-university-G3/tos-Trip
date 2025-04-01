@@ -12,7 +12,7 @@ const Home = () => {
       if (Array.isArray(data)) {
         setPlaces(data); // ✅ Use the array directly
       } else {
-        console.error("Error: APIs response is not an array", data);
+        console.error("Error: APIs responsed is not an array", data);
       }
     }
     getCategories();
