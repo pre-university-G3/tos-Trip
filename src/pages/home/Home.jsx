@@ -21,6 +21,7 @@ const Home = () => {
   return (
     <div>
       <h1>Home</h1>
+      <p>hello trsting</p>
       {places.length > 0 ? (
         <ul>
           {places.map((place) => (
