@@ -13,14 +13,14 @@ export function NavbarComponents() {
 
   return (
     <header className="sticky top-0 z-50 bg-[#ffff] shadow-md font-[Suwannaphum]">
-      <nav className="max-w-screen-2xl  mx-auto py-4 px-6 md:px-[10%] flex items-center justify-between">
+      <nav className="max-w-screen-2xl  mx-auto py-4 px-6 md:px-[7%] flex items-center justify-between">
         {/* Logo */}
         <div>
           <NavLink to="/">
             <img src={logo} alt="logo" className="h-15 object-cover" />
           </NavLink>
         </div>
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex space-x-6 gap-15">
           {menu.map((item, index) => (
             <NavLink
               key={index}

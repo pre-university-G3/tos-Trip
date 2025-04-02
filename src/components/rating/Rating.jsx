@@ -15,10 +15,10 @@ const Rating = () => {
             rating >= star ? "text-yellow-500" : "text-gray-300"
           }`}
           onClick={() => handleRating(star)}
-          size={20}
+          size={18}
         />
       ))}
-      <p className="px-2 ml-2 text-white bg-Primary rounded">{rating}/5</p>
+      <p className="px-1 ml-3 text-white text-center text-[14px] bg-Primary rounded">{rating}/5</p>
     </div>
   );
 };
