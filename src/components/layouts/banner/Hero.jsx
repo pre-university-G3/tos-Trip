@@ -7,25 +7,24 @@ import { HiOutlineArrowRight, HiShoppingCart } from "react-icons/hi";
 import { Link } from 'react-router';
 const Hero = () => {
   return (
-    <div className="bg-white p-10 rounded-lg flex flex-col lg:flex-row justify-between items-center font-[Suwannaphum] mt-2 mx-auto shadow-lg border border-gray-200">
+    <div className="bg-Snow w-full h-full p-10 rounded-lg flex flex-col lg:flex-row justify-between items-center font-[Suwannaphum] mt-2 mx-auto shadow-sm ">
 
       {/* Left Side Text */}
       <div className="lg:w-1/2 text-center lg:text-left pb-10 ">
-        <h1 className="text-3xl lg:text-5xl font-bold leading-10 md:leading-20 mt-4 text-heade">
-          ការធ្វើដំណើរដ៏អស្ចារ្យដើម្បីបង្កើត  <span className="text-Primary">ការចងចាំដ៏មានន័យ</span>
+        <h1 className="text-2xl lg:text-4xl font-bold  leading-10 md:leading-15 mt-4 text-heade">
+          ការធ្វើដំណើរដ៏អស្ចារ្យដើម្បីបង្កើត<span className="text-Primary">ការចងចាំដ៏មានន័យ</span>
         </h1>
-        <p className="text-Secondary mt-4">
+        <p className="text-Secondary mt-4 md:text-xl ">
           ស្វែងរកទីកន្លែងទេសចរណ៍ក្នុងកម្ពុជាទាំងអស់ ដើម្បីលើកកម្ពស់វិស័យទេសចរណ៍ បង្កើតឱកាសការងារ និងផ្សព្វផ្សាយវប្បធម៌ជាតិអន្តរជាតិ។
         </p>
         <Link to="/place">
           <Button color="#faa834" size="lg" className="bg-Primary text-white
                mt-10 px-6 py-3 rounded-lg flex items-center justify-center 
              hover:bg-[#eb5a00] transition duration-300 ease-in-out cursor-pointer">
-            ដំំំណើរទេសចរណ៍
+              ដំំំណើរទេសចរណ៍
             <HiOutlineArrowRight className="ml-2 h-5  w-5​" />
           </Button>
         </Link>
-
       </div>
 
       {/* Right Side Images */}
