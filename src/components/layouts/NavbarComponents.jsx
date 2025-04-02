@@ -12,8 +12,8 @@ export function NavbarComponents() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md font-[Suwannaphum]">
-      <nav className="max-w-screen-2xl  mx-auto py-4 px-6 md:px-[10%] = flex items-center justify-between">
+    <header className="sticky top-0 z-50 bg-[#ffff] shadow-md font-[Suwannaphum]">
+      <nav className="max-w-screen-2xl  mx-auto py-4 px-6 md:px-[10%] flex items-center justify-between">
         {/* Logo */}
         <div>
           <NavLink to="/">
