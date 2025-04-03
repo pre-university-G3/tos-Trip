@@ -1,31 +1,26 @@
 import { Card } from "flowbite-react";
+
 import React, { useEffect, useState } from "react";
 import getData from "../../services/get/getData";
 import Rating from "../rating/Rating";
 import { Link } from "react-router";
 
-export function CardPlace() {
+export function Cardplacemore() {
   const [places, setPlaces] = useState([]);
-  const categoryFilter = ["តំបន់វាលរាប", "តំបន់ភ្នំ","តំបន់ប្រាសាទ"];
   useEffect(() => {
     async function fetchPlaces() {
       const data = await getData("places");
       console.log("Fetched Data:", data);
-      if (data) {
-        const filteredPlaces = data.filter(
-          (place) => categoryFilter.includes(place.category?.name)
-        );
-        setPlaces(filteredPlaces);
-      }
+      setPlaces(data);
+
     }
     fetchPlaces();
   }, []);
-
   return (
-    <section className="flex flex-wrap justify-center gap-7 bg-white mt-5">
-      {places.slice(0, 6).map((place) => (
-        <Card key={place.id}  className="max-w-sm  bg-white ">
-           <Link to={`/place/${place.uuid}`}>
+    <section className="flex flex-wrap gap-4 bg-white mt-5">
+      {places.slice(0, 3).map((place) => (
+        <Card key={place.id} className="max-w-sm bg-white shadow-lg">
+          <Link to={`/place/${place.uuid}`}>
             <img
               className="rounded-t-lg  object-cover"
               src={place.imageUrls[0] || "https://eacnews.asia/uploads/images/10265/EAC-NEWS-2022-03-17.png"}
@@ -34,11 +29,9 @@ export function CardPlace() {
           </Link>
           <div className="p-4">
             <h5 className="text-2xl font-bold tracking-tight text-gray-900">
-              {place.name || "No place"}
+              {place.name || "no place"}
             </h5>
-            <p className="font-normal text-gray-700 line-clamp-3">
-              {place.description || "No description"}
-            </p>
+            <p className="font-normal text-gray-700 line-clamp-3">{place.description || "no description"}</p>
             <Rating />
           </div>
         </Card>
