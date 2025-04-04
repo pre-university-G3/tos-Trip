@@ -6,7 +6,7 @@ import { Link } from "react-router";
 
 export function CardPlace() {
   const [places, setPlaces] = useState([]);
-  const categoryFilter = ["តំបន់វាលរាប", "តំបន់ភ្នំ","តំបន់ប្រាសាទ"];
+  const categoryFilter = ["តំបន់វាលរាប", "តំបន់ភ្នំ","តំបន់ប្រាសាទ",""];
   useEffect(() => {
     async function fetchPlaces() {
       const data = await getData("places");

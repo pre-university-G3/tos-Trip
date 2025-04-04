@@ -1,7 +1,7 @@
 
 import Hero from '../../components/layouts/banner/Hero';
 import { CardPlace } from '../../components/places/CardPlace';
-import { Cardplacemore } from '../../components/places/cardplacemore';
+import {  ListPlaceCategory } from '../../components/places/ListPlaceCategory';
 import PopularPlaces from '../../components/places/PopularPlaces';
 import TitleHomepage from '../../components/Title/TitleHomepage';
 
@@ -17,21 +17,17 @@ const Home = () => {
         <PopularPlaces />
         <TitleHomepage title="៦កន្លែង មានទេសភាពស្អាតបំផុតនៅរដូវនេះ" />
         {/* <CardPlace /> */}
-        <div className="grid grid-cols-1 gap-4 ">
+        <div className="grid grid-cols-1  items-center gap-4  justify-center">
           <CardPlace />
         </div>
         <TitleHomepage title="ប្រភេទតំបន់ផ្សេងៗ" />
-        <div className="grid grid-cols-1 gap-4 ">
-          <Cardplacemore />
+        <div className="grid grid-cols-1 gap-4 items-center  justify-center">
+          <ListPlaceCategory />
         </div>
-
-        <TitleHomepage title="ប្រភេទតំបន់ផ្សេងៗ" />
         <div className="grid grid-cols-1 gap-4 ">
-          
         </div>
-
       </section>
-      
+
     </div>
   );
 }
