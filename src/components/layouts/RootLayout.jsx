@@ -6,7 +6,7 @@ export default function RootLayout() {
   return (
     <div>
       <NavbarComponents />
-      <main className="max-w-screen-xl mx-auto">
+      <main className="">
         <Outlet />
       </main>
       {/* footer */}

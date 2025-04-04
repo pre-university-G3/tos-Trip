@@ -1,40 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import getData from '../../services/get/getData';
+
+import Hero from '../../components/layouts/banner/Hero';
+import { CardPlace } from '../../components/places/CardPlace';
+import { Cardplacemore } from '../../components/places/cardplacemore';
+import PopularPlaces from '../../components/places/PopularPlaces';
+import TitleHomepage from '../../components/Title/TitleHomepage';
+
 
 const Home = () => {
-  const [places, setPlaces] = useState([]);
-
-  useEffect(() => {
-    async function getCategories() {
-      const data = await getData("places"); 
-      console.log("Fetched Data:", data); // ✅ Debug API response
-
-      if (Array.isArray(data)) {
-        setPlaces(data); // ✅ Use the array directly
-      } else {
-        console.error("Error: API response is not an array", data);
-      }
-    }
-    getCategories();
-  }, []);
-
   return (
-    <div>
-  
-      {places.length > 0 ? (
-        <ul>
-          {places.map((place) => (
-            <li key={place.id}>
-              <h2>{place.name}</h2>
-              <p>{place.description}</p>
-              <p><strong>Category:</strong> {place.category.name}</p>
-              <img src={place.imageUrls[0]} alt={place.name} width="200" />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>Loading...</p>
-      )}
+    <div className="mx-auto max-w-screen-2xl md:px-[7%] px-4 py-8 font-[Suwannaphum]">
+      <div className='mb-10'>
+        <Hero />
+      </div>
+      <section className='m-8'>
+        <TitleHomepage title="ដំណើរទេសចរណ៍ដ៏ប្រជាប្រិយប្រចាំប្រទេសរបស់យើង" />
+        <PopularPlaces />
+        <TitleHomepage title="៦កន្លែង មានទេសភាពស្អាតបំផុតនៅរដូវនេះ" />
+        {/* <CardPlace /> */}
+        <div className="grid grid-cols-1 gap-4 ">
+          <CardPlace />
+        </div>
+        <TitleHomepage title="ប្រភេទតំបន់ផ្សេងៗ" />
+        <div className="grid grid-cols-1 gap-4 ">
+          <Cardplacemore />
+        </div>
+
+        <TitleHomepage title="ប្រភេទតំបន់ផ្សេងៗ" />
+        <div className="grid grid-cols-1 gap-4 ">
+          
+        </div>
+
+      </section>
+      
     </div>
   );
 }
