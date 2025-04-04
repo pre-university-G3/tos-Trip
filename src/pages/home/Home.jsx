@@ -1,4 +1,3 @@
-
 import Hero from '../../components/layouts/banner/Hero';
 import { CardPlace } from '../../components/places/CardPlace';
 import {  ListPlaceCategory } from '../../components/places/ListPlaceCategory';
@@ -25,6 +24,7 @@ const Home = () => {
           <ListPlaceCategory />
         </div>
         <div className="grid grid-cols-1 gap-4 ">
+          
         </div>
       </section>
 

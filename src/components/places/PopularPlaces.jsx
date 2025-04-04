@@ -16,7 +16,6 @@ const destinations = [
   { title: "ភ្នំបូកគោ", subtitle: "ខេត្តកំពត", image: place6, size: "col-span-1 row-span-1" },
   { title: "ភ្នំក្រវ៉ាញ", subtitle: "ប៉ែកនរតី", image: place5, size: "col-span-1 row-span-1" },
 ];
-
 const PopularPlaces = () => {
   return (
     <div className="py-6">

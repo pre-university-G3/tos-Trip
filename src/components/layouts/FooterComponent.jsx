@@ -1,30 +1,27 @@
 import React from "react";
 import {
   Footer,
-
   FooterCopyright,
   FooterDivider,
-
   FooterLinkGroup,
   FooterLink,
   FooterTitle,
 } from "flowbite-react";
-import { Link } from "react-router"; 
-import logo from "../../assets/Final_Tostriplogo.png"; 
+import { Link } from "react-router";
+import { MdOutlineMail } from "react-icons/md";
+import { LuPhone } from "react-icons/lu";
+import logo from "../../assets/Final_Tostriplogo.png";
 
 const FooterComponent = () => {
   return (
-    <Footer container className="bg-white px-6 sm:px-10 lg:px-[8%] py-12 shadow-md ">
+    <Footer container className="bg-[#fcf5f5] px-6 sm:px-10 md:px-[8%] py-12 shadow-md shadow-Primary">
       <div className="w-full">
-      
-        <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
-       
-          <div className="flex items-center justify-center sm:justify-start mb-6 sm:mb-0">
-            <img src={logo} alt="tos Trip logo" className="w-20" />
+        <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
+          <div className="flex justify-center lg:justify-start">
+            <img src={logo} alt="Tos Trip logo" className="w-20 h-20" />
           </div>
-
-          <div className="grid grid-cols-2  gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6  ">
-            <div className="flex flex-col items-center sm:items-start md:items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center sm:text-left">
+            <div>
               <FooterTitle title="ការស្វែងរក" />
               <FooterLinkGroup col>
                 <Link to="/">
@@ -38,7 +35,6 @@ const FooterComponent = () => {
                 </Link>
               </FooterLinkGroup>
             </div>
-            {/* Help Services */}
             <div>
               <FooterTitle title="ជំនួយសេវា" />
               <FooterLinkGroup col>
@@ -53,19 +49,27 @@ const FooterComponent = () => {
                 </Link>
               </FooterLinkGroup>
             </div>
-            {/* Contact Info */}
             <div>
               <FooterTitle title="ទំនាក់ទំនង" />
               <FooterLinkGroup col>
-                <FooterLink href="mailto:reachraydy000@gmail.com">reachraydy000@gmail.com</FooterLink>
-                <FooterLink href="#">0888888888</FooterLink>
+                <FooterLink href="mailto:reachraydy000@gmail.com" >
+                  <li className="flex items-center gap-2">
+                    <MdOutlineMail className="flex " />reachraydy000@gmail.com
+                  </li>
+                </FooterLink>
+                <FooterLink href="#">
+                  <li>
+                    <LuPhone />
+                    0888888888
+                  </li>
+                </FooterLink>
                 <FooterLink href="#">កម្ពុជា, ភ្នំពេញ</FooterLink>
               </FooterLinkGroup>
             </div>
           </div>
         </div>
-        <FooterDivider />
-        <div className="w-full sm:flex sm:items-center sm:justify-between">
+        <FooterDivider className="my-8" />
+        <div className="flex flex-col md:flex-row justify-center  items-center gap-4">
           <FooterCopyright href="#" by="Tos Trip™" year={2025} />
         </div>
       </div>

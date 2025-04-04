@@ -20,6 +20,8 @@ createRoot(document.getElementById("root")).render(
           <Route path="/place" element={<Place />} />
           <Route path="/place/:uuid" element={<PlaceDetailPage />} />
           <Route path="/about" element={<About />} />
+          {/* <Route path="/category/:uuid" element={<About />} /> */}
+          
           {/* <Route
             path="/products/categories/:uuid"
             element={<ProductCategoriesPage />}
