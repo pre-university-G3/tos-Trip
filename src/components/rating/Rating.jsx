@@ -8,7 +8,7 @@ const Rating = () => {
     async function fetchRating() {
       try {
         const data = await getData("reviews"); 
-        console.log(data);
+        // console.log(data);
         if (data && Array.isArray(data) && data.length > 0) {
           setRating(data.rating); 
         }
