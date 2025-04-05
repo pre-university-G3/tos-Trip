@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import getData from '../../services/get/getData';
+import MapPlace from '../../components/map/MapPlace';
 
 const PlaceDetailPage = () => {
   const [place, setPlace] = useState(null);
@@ -50,6 +51,9 @@ const PlaceDetailPage = () => {
         <hr />
         <p className="mt-5 mb-5 text-2xl">{place.description}</p>
       </section>
+
+      <section className='px-[8%]'><MapPlace /></section>
+
     </div>
   );
 };

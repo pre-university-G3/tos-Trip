@@ -30,23 +30,17 @@ export default function CategoryList() {
 
   useEffect(() => {
     let list = [...places];
-
-    // Filter by category
     if (selectedCategory) {
       console.log("Filtering by category:", selectedCategory); // Debugging line
       list = list.filter(
         (place) => place.category?.name === selectedCategory
       );
     }
-
-    // Filter by search
     if (search) {
       list = list.filter((place) =>
         place.name.toLowerCase().includes(search.toLowerCase())
       );
     }
-
-    // Sorting logic
     if (sortBy === "name") {
       list.sort((a, b) => a.name.localeCompare(b.name));
     }
