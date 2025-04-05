@@ -9,13 +9,11 @@ import { NavbarComponents } from '../../components/layouts/NavbarComponents'
 const About = () => {
   return (
     <main>
-     
       <AboutBanner />
       <AboutContent/>
       <AboutMentor/>
       <AboutTeamMember/>
       <ContactForm/>
-
     </main>
     
   )
