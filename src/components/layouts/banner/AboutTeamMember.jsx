@@ -1,0 +1,42 @@
+import React from 'react';
+import hero2 from '../../../assets/hero2.png';
+
+const teamMembers = [
+    { name: "រៀន ចាន់រីន", role: "ប្រធានក្រុម", image: hero2 },
+    { name: "យឹម សុខា", role: "អនុប្រធាន", image: hero2 },
+    { name: "ឌីតា​​​ វុិកទ័រ", role: "សមាជិក", image: hero2 },
+    { name: "ម៉ៃ​ សុខលីណា", role: "សមាជិក", image: hero2 },
+    { name: "ហេង ល័ងឈ័រ", role: "សមាជិក", image: hero2 },
+    { name: "សាយ គីមឡុង", role: "សមាជិក", image: hero2 },
+    { name: "តុង​​ ទីន", role: "សមាជិក", image: hero2 },
+    { name: "ជិន​ ណារិន", role: "សមាជិក", image: hero2 },
+    { name: "អាន ដាលីន", role: "សមាជិក", image: hero2 },
+    { name: "ណំ តុលា", role: "សមាជិក", image: hero2 },
+];
+
+const AboutTeamMember = () => {
+    return (
+
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 md:px-[8%]">
+            {teamMembers.map((member, index) => (
+                <div
+                    key={index}
+                    className="shadow-lg border border-gray-200 rounded-xl p-4 flex flex-col items-center text-center bg-white"
+                >
+                    <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-32 h-32 sm:w-36 sm:h-36  rounded-full mb-4 object-cover"
+                    />
+                    <h2 className="text-lg font-semibold">{member.name}</h2>
+                    <p className="text-gray-500">{member.role}</p>
+                </div>
+            ))}
+        </div>
+
+
+    );
+};
+
+export default AboutTeamMember;
