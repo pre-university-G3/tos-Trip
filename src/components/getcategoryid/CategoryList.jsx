@@ -68,7 +68,7 @@ export default function CategoryList() {
             onClick={() => setIsOpen(!isOpen)} // Toggle dropdown visibility
             className="w-full border border-gray-300 p-2 rounded bg-white text-left text-gray-800 focus:outline-none focus:ring-2 focus:ring-Primary"
           >
-            {selectedCategory || "All Categories"}
+            {selectedCategory || "កន្លែងទេសចរណ៍​ទាំងអស់"}
           </button>
           {isOpen && (
             <ul className="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded shadow-lg">
@@ -76,7 +76,7 @@ export default function CategoryList() {
                 className="px-4 py-2 hover:bg-Primary hover:text-white cursor-pointer"
                 onClick={() => handleSelect("")}
               >
-                All Categories
+                កន្លែងទេសចរណ៍​ទាំងអស់
               </li>
               {categoryList.map((cat) => (
                 <li

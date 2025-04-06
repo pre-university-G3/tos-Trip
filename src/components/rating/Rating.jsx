@@ -10,9 +10,10 @@ const Rating = () => {
       const data = await getData("reviews");
 
       if (Array.isArray(data) && data.length > 0) {
-        const total = data.reduce((sum, review) => sum + review.rating, 0);
+        const total = data.reduce((sum, review) => sum + review.rating,0);
         const average = total / data.length;
-        setAverageRating(Math.round(average)); // round to integer here
+        setAverageRating(Math.round(average));
+        console.log("rating",averageRating)
       }
     }
 

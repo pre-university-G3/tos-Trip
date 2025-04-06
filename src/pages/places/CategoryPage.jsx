@@ -38,11 +38,11 @@ const CategoryPage = () => {
             }}
           >
             <div className="absolute inset-0  grayscale-25 rounded-lg"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white z-10 text-center px-4">
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-heade z-10 text-center px-4">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 bg-black-40">
                 {category.name}
               </h1>
-              <p className="text-sm sm:text-base md:text-lg text-Secondary max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base md:text-lg text-sky-200 max-w-2xl mx-auto">
                 {category.description}
               </p>
             </div>

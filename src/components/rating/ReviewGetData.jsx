@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import getData from "../../services/get/getData";
 import { useParams } from "react-router";
+import Rating from "./Rating";
+
 
 export function ReviewGetData() {
   const [reviews, setReviews] = useState([]);
@@ -41,14 +43,14 @@ export function ReviewGetData() {
   if (reviews.length === 0) return <p>No reviews for this place.</p>;
 
   return (
-    <div className="space-y-4 ">
+    <div className="overflow-y-auto">
       {reviews.map((review, index) => (
-        <div key={index} className="text-center bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-          <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
+        <div key={index} className="text-center bg-Snow p-10 rounded-lg">
+          <p className="text-md sm:text-lg md:text-xl font-bold text-heade dark:text-white">
             {review.review}
           </p>
           <p className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-300 mt-2">
-            Rating: {review.rating} / 5
+            <Rating />
           </p>
         </div>
       ))}
