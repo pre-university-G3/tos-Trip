@@ -2,9 +2,6 @@ import React from 'react'
 import CategoryList from '../../components/getcategoryid/CategoryList'
 import PlacesBanner from '../../components/layouts/banner/PlacesBanner'
 
-
-
-
 const Place = () => {
   return (
     <div>
@@ -17,4 +14,4 @@ const Place = () => {
   )
 }
 
-export default Place
+export default Place;

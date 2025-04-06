@@ -49,7 +49,7 @@ const ReviewForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md mx-auto bg-white shadow-md rounded-lg py-10 px-10 my-10  space-y-4"
+      className="  bg-white shadow-md rounded-lg py-10 px-10 my-10  space-y-4"
     >
       <h2 className="text-xl font-bold">Leave a Review</h2>
 
