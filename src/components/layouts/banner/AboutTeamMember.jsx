@@ -1,17 +1,21 @@
 import React from 'react';
-import hero2 from '../../../assets/hero2.png';
-
+import rin from '../../../assets/Menber/rin1.png';
+import sokha from '../../../assets/Menber/sokha.png';
+import tola from '../../../assets/Menber/tola.png'
+import hng from '../../../assets/Menber/l.png';
+import Ton from '../../../assets/Menber/Ton.png'
+import reator from '../../../assets/Menber/tor.png'
 const teamMembers = [
-    { name: "រៀន ចាន់រីន", role: "ប្រធានក្រុម", image: hero2 },
-    { name: "យឹម សុខា", role: "អនុប្រធាន", image: hero2 },
-    { name: "ឌីតា​​​ វុិកទ័រ", role: "សមាជិក", image: hero2 },
-    { name: "ម៉ៃ​ សុខលីណា", role: "សមាជិក", image: hero2 },
-    { name: "ហេង ល័ងឈ័រ", role: "សមាជិក", image: hero2 },
-    { name: "សាយ គីមឡុង", role: "សមាជិក", image: hero2 },
-    { name: "តុង​​ ទីន", role: "សមាជិក", image: hero2 },
-    { name: "ជិន​ ណារិន", role: "សមាជិក", image: hero2 },
-    { name: "អាន ដាលីន", role: "សមាជិក", image: hero2 },
-    { name: "ណំ តុលា", role: "សមាជិក", image: hero2 },
+    { name: "រៀន ចាន់រីន", role: "ប្រធានក្រុម", image: rin },
+    { name: "យឹម សុខា", role: "អនុប្រធាន", image: sokha },
+    { name: "ឌីតា​​​ វុិកទ័រ", role: "សមាជិក", image:reator  },
+    { name: "ម៉ៃ​ សុខលីណា", role: "សមាជិក", image: rin },
+    { name: "ហេង ល័ងឈ័រ", role: "សមាជិក", image: hng },
+    { name: "សាយ គីមឡុង", role: "សមាជិក", image: rin },
+    { name: "តុង​​ ទីន", role: "សមាជិក", image: Ton },
+    { name: "ជិន​ ណារិន", role: "សមាជិក", image: rin },
+    { name: "អាន ដាលីន", role: "សមាជិក", image: rin },
+    { name: "ណំ តុលា", role: "សមាជិក", image: tola },
 ];
 
 const AboutTeamMember = () => {

@@ -53,6 +53,7 @@ const PlaceDetailPage = () => {
       </section>
 
       <section className='px-[8%]'><MapPlace /></section>
+      
 
     </div>
   );

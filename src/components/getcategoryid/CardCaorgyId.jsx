@@ -28,7 +28,7 @@ const Places = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 ">
           {places.map((place) => (
             <div key={place.id} className="p-4 border rounded shadow">
               <h2 className="text-xl font-semibold">{place.name}</h2>

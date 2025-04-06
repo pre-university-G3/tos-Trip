@@ -8,8 +8,6 @@ import { Link } from 'react-router';
 const Hero = () => {
   return (
     <div className="bg-Snow p-10 rounded-lg flex flex-col lg:flex-row justify-between items-center font-[Suwannaphum] mt-2 mx-auto shadow-lg border border-gray-200">
-
-      {/* Left Side Text */}
       <div className="lg:w-1/2 text-center lg:text-left pb-10 md:flex-col lg:flex-col pl-9">
         <h1 className="text-3xl lg:text-5xl font-bold leading-10 md:leading-20 mt-4 text-heade">
           ការធ្វើដំណើរដ៏អស្ចារ្យដើម្បីបង្កើត  <span className="text-Primary">ការចងចាំដ៏មានន័យ</span>

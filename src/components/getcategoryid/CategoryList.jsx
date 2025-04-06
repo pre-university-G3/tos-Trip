@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import getData from "../../services/get/getData";
+import {  Spinner } from "flowbite-react";
+import { Link } from "react-router";
 
 export default function CategoryList() {
   const [places, setPlaces] = useState([]);
@@ -8,20 +10,24 @@ export default function CategoryList() {
   const [categoryList, setCategoryList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortBy, setSortBy] = useState("name");
+  const [loading, setLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);  // <-- Add state for dropdown visibility
 
   useEffect(() => {
     async function fetchData() {
+      setLoading(true); // Start loading
       try {
         const [placesData, categoriesData] = await Promise.all([
           getData("places"),
           getData("categories"),
         ]);
-        console.log("Fetched categories:", categoriesData); 
         setPlaces(placesData);
         setCategoryList(categoriesData);
         setFiltered(placesData);
       } catch (error) {
         console.error("Error fetching categories or places:", error);
+      } finally {
+        setLoading(false); 
       }
     }
 
@@ -31,7 +37,6 @@ export default function CategoryList() {
   useEffect(() => {
     let list = [...places];
     if (selectedCategory) {
-      console.log("Filtering by category:", selectedCategory); // Debugging line
       list = list.filter(
         (place) => place.category?.name === selectedCategory
       );
@@ -48,42 +53,89 @@ export default function CategoryList() {
     setFiltered(list);
   }, [search, selectedCategory, sortBy, places]);
 
+  // Handle category selection
+  const handleSelect = (value) => {
+    setSelectedCategory(value);
+    setIsOpen(false);  // Close dropdown after selection
+  };
+
   return (
     <div className="p-6">
-      <select
-        className="border p-2 rounded w-full sm:w-1/4"
-        value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e.target.value)}
-      >
-        <option value="">All Categories</option>
-        {categoryList.map((cat) => (
-          <option key={cat.name} value={cat.name}>
-            {cat.name}
-          </option>
-        ))}
-      </select>
-      <input
-        type="text"
-        placeholder="Search places..."
-        className="border p-2 rounded w-full sm:w-1/3 mt-4"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <div className="flex flex-wrap justify-center gap-6 mt-6">
-        {filtered.map((place) => (
-          <div key={place.uuid} className="max-w-sm bg-white p-4 rounded-lg shadow-md">
-            <img
-              src={place.imageUrls?.[0] || "https://via.placeholder.com/150"}
-              alt={place.name}
-              className="w-full h-48 object-cover rounded-lg mb-4"
-            />
-            <h3 className="font-bold text-lg">{place.name}</h3>
-            <p className="text-gray-600">{place.description}</p>
-          </div>
-        ))}
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 px-[8%]">
+        <div className="relative w-full sm:w-1/4">
+          <button
+            onClick={() => setIsOpen(!isOpen)} // Toggle dropdown visibility
+            className="w-full border border-gray-300 p-2 rounded bg-white text-left text-gray-800 focus:outline-none focus:ring-2 focus:ring-Primary"
+          >
+            {selectedCategory || "All Categories"}
+          </button>
+          {isOpen && (
+            <ul className="absolute z-10 mt-2 w-full bg-white border border-gray-300 rounded shadow-lg">
+              <li
+                className="px-4 py-2 hover:bg-Primary hover:text-white cursor-pointer"
+                onClick={() => handleSelect("")}
+              >
+                All Categories
+              </li>
+              {categoryList.map((cat) => (
+                <li
+                  key={cat.name}
+                  className="px-4 py-2 hover:bg-Primary hover:text-white cursor-pointer"
+                  onClick={() => handleSelect(cat.name)}
+                >
+                  {cat.name}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <input
+          type="text"
+          placeholder="ស្វែងរកទីកន្លែង..."
+          className="border p-2 rounded w-full sm:w-1/3 mt-4"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </div>
-      {filtered.length === 0 && (
-        <p className="text-center text-gray-400 mt-10">No places found.</p>
+      <hr className="my-8 border-t border-gray-300" />
+      {loading ? (
+        <div className="flex justify-center items-center mt-10">
+          <Spinner aria-label="Loading places..." size="xl" />
+        </div>
+      ) : (
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 px-[8%]">
+            {filtered.slice(0, 12).map((place) => (
+              <div
+                key={place.id}
+                className="max-w-sm w-full bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300"
+              >
+                <Link to={`/place/${place.uuid}`}>
+                  <img
+                    className="w-full h-48 object-cover"
+                    src={
+                      place.imageUrls?.[0] ||
+                      "https://eacnews.asia/uploads/images/10265/EAC-NEWS-2022-03-17.png"
+                    }
+                    alt={place.name}
+                  />
+                </Link>
+                <div className="p-4">
+                  <h5 className="text-xl font-semibold text-gray-800 truncate">
+                    {place.name || "No place"}
+                  </h5>
+                  <p className="text-sm text-gray-600 mt-2 line-clamp-3">
+                    {place.description || "No description"}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {filtered.length === 0 && (
+            <p className="text-center text-gray-400 mt-10">No places found.</p>
+          )}
+        </>
       )}
     </div>
   );

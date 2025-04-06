@@ -3,7 +3,7 @@ import hero2 from '../../../assets/At the office-rafiki.png';
 
 const ContactForm = () => {
   return (
-    <section className="bg-white py-16 px-4 md:px-12 mt-20">
+    <section className="bg-white py-10 px-4 md:px-12 mt-10">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
         
         {/* Left - Image */}
@@ -14,8 +14,6 @@ const ContactForm = () => {
             className="w-full max-w-[900px] h-auto object-contain"
           />
         </div>
-
-        {/* Right - Form */}
         <div className="w-full md:w-1/2 bg-white p-6 md:p-8 rounded-xl shadow-lg">
           <h2 className="text-xl md:text-2xl font-bold text-Primary mb-6 text-center">
             ទំនាក់ទំនងមកកាន់យើង

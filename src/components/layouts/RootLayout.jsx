@@ -9,11 +9,11 @@ export default function RootLayout() {
     <div className="font-[Suwannaphum]">
       {/* navbar */}
       <NavbarComponents />
-      <main className="">
+      <main >
         <Outlet />
       </main>
       {/* footer */}
-      {/* <FooterComponent /> */}
+      <FooterComponent />
     </div>
   );
 }
