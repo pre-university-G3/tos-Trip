@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import getData from '../../services/get/getData';
 import MapPlace from '../../components/map/MapPlace';
+import ReviewForm from '../../components/rating/ReviewForm';
+import { ReviewGetData } from '../../components/rating/ReviewGetData';
 
 const PlaceDetailPage = () => {
   const [place, setPlace] = useState(null);
@@ -53,7 +55,12 @@ const PlaceDetailPage = () => {
       </section>
 
       <section className='px-[8%]'><MapPlace /></section>
-      
+      <hr />
+      <section>
+        {/* <ReviewGetData /> */}
+        <ReviewForm />
+        
+      </section>
 
     </div>
   );

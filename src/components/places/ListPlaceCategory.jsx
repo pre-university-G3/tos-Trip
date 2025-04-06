@@ -8,7 +8,8 @@ import place3 from "../../assets/Category/PlainArea.jpg";
 import place4 from "../../assets/Category/korkkungkrav.jpeg";
 import place5 from "../../assets/Category/OralMountain.jpg";
 
-const Images = [place1, place4, place5, place2, place3];
+
+const Images = [place1, place4, place5, place3, place2];
 
 export function ListPlaceCategory() {
   const [typeCategory, setTypeCategory] = useState([]);
@@ -17,7 +18,7 @@ export function ListPlaceCategory() {
     async function fetchPlaces() {
       const data = await getData("categories");
       setTypeCategory(data);
-      console.log("categories:", data);
+      console.log(" Category :",data);
     }
     fetchPlaces();
   }, []);
@@ -40,6 +41,7 @@ export function ListPlaceCategory() {
             <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white p-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transform translate-y-10 transition-all duration-500 ease-out">
               <h3 className="text-xl text-center">{item.name}</h3>
             </div>
+           
           </Card>
         </Link>
 

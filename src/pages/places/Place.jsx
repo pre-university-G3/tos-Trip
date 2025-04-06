@@ -4,6 +4,7 @@ import PlacesBanner from '../../components/layouts/banner/PlacesBanner'
 
 
 
+
 const Place = () => {
   return (
     <div>

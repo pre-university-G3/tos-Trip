@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import getData from "../../services/get/getData";
 import {  Spinner } from "flowbite-react";
 import { Link } from "react-router";
+import Rating from "../rating/Rating";
 
 export default function CategoryList() {
   const [places, setPlaces] = useState([]);
@@ -127,11 +128,11 @@ export default function CategoryList() {
                   <p className="text-sm text-gray-600 mt-2 line-clamp-3">
                     {place.description || "No description"}
                   </p>
+                <Rating />
                 </div>
               </div>
             ))}
           </div>
-
           {filtered.length === 0 && (
             <p className="text-center text-gray-400 mt-10">No places found.</p>
           )}

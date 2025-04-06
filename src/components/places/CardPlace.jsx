@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import getData from "../../services/get/getData";
 
 import { Link } from "react-router";
+import Rating from "../rating/Rating";
 
 export function CardPlace() {
   const [places, setPlaces] = useState([]);
@@ -39,7 +40,7 @@ export function CardPlace() {
             <p className="font-normal text-gray-700 line-clamp-3">
               {place.description || "No description"}
             </p>
-            {/* <Rating  /> */}
+            <Rating  />
           </div>
         </Card>
       ))}

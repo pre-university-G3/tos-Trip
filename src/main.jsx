@@ -9,6 +9,7 @@ import Place from "./pages/places/Place.jsx";
 import Home from "./pages/home/Home.jsx";
 
 import PlaceDetailPage from "./pages/places/PlaceDetailPage.jsx";
+import CategoryPage from "./pages/places/CategoryPage.jsx";
 
 
 createRoot(document.getElementById("root")).render(
@@ -20,6 +21,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/place" element={<Place />} />
           <Route path="/place/:uuid" element={<PlaceDetailPage />} />
           <Route path="/about" element={<About />} />
+          <Route path="/category/:uuid" element={<CategoryPage />} />
           {/* <Route path="/category/:uuid" element={<About />} /> */}
           
           {/* <Route

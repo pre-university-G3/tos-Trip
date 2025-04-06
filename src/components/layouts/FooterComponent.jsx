@@ -6,7 +6,7 @@ import logo from "../../assets/Final_Tostriplogo.png";
 
 const FooterComponent = () => {
   return (
-    <footer className="  px-6 sm:px-10 md:px-[8%] py-12 shadow-md shadow-gray-700 bg-[#ffffff] font-[Suwannaphum]">
+    <footer className="  px-6 sm:px-10 md:px-[8%] py-10 shadow-md  bg-[#ffffff] font-[Suwannaphum]">
       <div className="max-w-7xl mx-auto ">
         <div  className="flex  justify-around items-center flex-col lg:flex-row gap-8">
           <div className="flex justify-center lg:justify-start ">

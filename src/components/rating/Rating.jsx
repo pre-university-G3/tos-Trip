@@ -1,36 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import getData from "../../services/get/getData";
+
 const Rating = () => {
-  const [rating, setRating] = useState(0);
+  const [averageRating, setAverageRating] = useState(0);
 
   useEffect(() => {
     async function fetchRating() {
       const data = await getData("reviews");
-      setRating(data.rating);
-      console.log("Fetched Full Data:", data);
-      console.log("Fetched Rating only :", rating);
+
+      if (Array.isArray(data) && data.length > 0) {
+        const total = data.reduce((sum, review) => sum + review.rating, 0);
+        const average = total / data.length;
+        setAverageRating(Math.round(average)); // round to integer here
+      }
     }
+
     fetchRating();
   }, []);
+
   return (
     <div className="flex items-center mt-5">
-      {
-      // rating.map((star) => (
-      //   <FaStar
-      //     key={star}
-      //     className={`transition-colors ${rating >= star ? "text-yellow-500" : "text-gray-300"}`}
-      //     size={18}
-      //   />
-        // ))
-      }
-        
-      <p className="px-1 ml-3 text-white text-center text-[14px] bg-Primary rounded">
-        {rating}/5
-      </p>
+      {[...Array(5)].map((_, index) => (
+        <FaStar
+          key={index}
+          className={`text-xl ${index < averageRating ? "text-yellow-400" : "text-gray-300"
+            }`}
+        />
+      ))}
+      <span className="ml-2 text-[12px] px-2 py-1 rounded bg-Primary text-white ">
+        {averageRating} / 5
+      </span>
+
     </div>
   );
 };
 
 export default Rating;
-

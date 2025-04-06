@@ -28,15 +28,16 @@ const MapPlace = () => {
   const [lat, lng] = location.split(',').map(coord => parseFloat(coord));
 
   return (
-    <div className='mb-10 pt-10'>  
+    <div className='mb-10 pt-10 static z=-10'>  
       <h2 className="text-Primary   text-3xl mb-3 ml-3.5 flex gap-10"><FaMapLocationDot /> ទីតាំង</h2>
       <MapContainer center={[lat, lng]} zoom={13} style={{ height: '400px', width: '100%' }} >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          className='z-10'
         />
         <Marker position={[lat, lng]}>
-          <Popup>
+          <Popup >
             <strong>{name}</strong>
             <br />
             {description}

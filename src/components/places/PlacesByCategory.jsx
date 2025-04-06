@@ -2,6 +2,7 @@ import { Card } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import getData from "../../services/get/getData";
 import { Link } from "react-router";
+import Rating from "../rating/Rating";
 
 export function PlaceByCategory() {
   const [places, setPlaces] = useState([]);
@@ -33,7 +34,7 @@ export function PlaceByCategory() {
             <p className="font-normal text-gray-700 line-clamp-3">
               {place.description || "No description"}
             </p>
-            {/* <Rating  /> */}
+            <Rating  />
           </div>
         </Card>
       ))}
