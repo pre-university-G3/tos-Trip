@@ -13,7 +13,7 @@ export function ReviewGetData() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const data = await getData("reviews"); // Fetch all reviews
+        const data = await getData("reviews");
         console.log("All reviews fetched:", data);
 
         if (Array.isArray(data)) {
@@ -33,8 +33,9 @@ export function ReviewGetData() {
     };
 
     fetchReviews();
-  }, [placeUuid]); 
-
+  }, [param.uuid]); 
+  console.log(reviews);
+  console.log("my uuid:",param.uuid);
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   if (reviews.length === 0) return <p>No reviews for this place.</p>;

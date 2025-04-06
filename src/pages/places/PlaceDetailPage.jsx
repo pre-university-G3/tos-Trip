@@ -56,11 +56,11 @@ const PlaceDetailPage = () => {
 
       <section className='px-[8%]'><MapPlace /></section>
       <hr />
-      <section>
-        {/* <ReviewGetData /> */}
+      <section className="flex flex-col md:flex-row flex-wrap gap-6 justify-between items-start w-full px-4 sm:px-8">
+        <ReviewGetData />
         <ReviewForm />
-        
       </section>
+
 
     </div>
   );
