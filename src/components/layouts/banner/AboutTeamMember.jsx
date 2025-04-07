@@ -1,11 +1,12 @@
 import React from 'react';
 import hero2 from '../../../assets/hero2.png';
+import Maisoklyna from '../../../assets/Maisoklyna.jpg';
 
 const teamMembers = [
     { name: "រៀន ចាន់រីន", role: "ប្រធានក្រុម", image: hero2 },
     { name: "យឹម សុខា", role: "អនុប្រធាន", image: hero2 },
     { name: "ឌីតា​​​ វុិកទ័រ", role: "សមាជិក", image: hero2 },
-    { name: "ម៉ៃ​ សុខលីណា", role: "សមាជិក", image:hero2},
+    { name: "ម៉ៃ​ សុខលីណា", role: "សមាជិក", image:Maisoklyna},
     { name: "ហេង ល័ងឈ័រ", role: "សមាជិក", image: hero2 },
     { name: "សាយ គីមឡុង", role: "សមាជិក", image:hero2 },
     { name: "តុង​​ ទីន", role: "សមាជិក", image:hero2 },
