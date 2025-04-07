@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import getData from "../../services/get/getData";
 import { Spinner } from "flowbite-react";
-import { Link } from "react-router"; 
+import { Link } from "react-router";
 import Rating from "../rating/Rating";
 
 export default function CategoryList() {
@@ -13,7 +13,7 @@ export default function CategoryList() {
   const [sortBy, setSortBy] = useState("name");
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(12); 
+  const [visibleCount, setVisibleCount] = useState(12);
 
   useEffect(() => {
     async function fetchData() {
@@ -51,7 +51,7 @@ export default function CategoryList() {
     }
 
     setFiltered(list);
-    setVisibleCount(12); // ✅ Reset to 12 on new filter/search
+    setVisibleCount(12);
   }, [search, selectedCategory, sortBy, places]);
 
   const handleSelect = (value) => {
@@ -61,9 +61,8 @@ export default function CategoryList() {
 
   return (
     <div className="p-6">
-      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 px-[8%]">
-        {/* Category Dropdown */}
-        <div className="relative w-full sm:w-1/4">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-4 px-4 sm:px-8 lg:px-16">
+        <div className="relative w-full sm:w-1/3 md:w-1/4">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="w-full border border-gray-300 p-2 rounded bg-white text-left text-gray-800 focus:outline-none focus:ring-2 focus:ring-Primary"
@@ -90,12 +89,10 @@ export default function CategoryList() {
             </ul>
           )}
         </div>
-
-        {/* Search Input */}
         <input
           type="text"
           placeholder="ស្វែងរកទីកន្លែង..."
-          className="border p-2 rounded w-full sm:w-1/3 mt-4"
+          className="border p-2 rounded w-full sm:w-1/2 mt-4 sm:mt-0"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -109,8 +106,7 @@ export default function CategoryList() {
         </div>
       ) : (
         <>
-          {/* Place Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 px-[8%]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 px-4 sm:px-8 lg:px-16">
             {filtered.slice(0, visibleCount).map((place) => (
               <div
                 key={place.id}
@@ -140,13 +136,9 @@ export default function CategoryList() {
               </div>
             ))}
           </div>
-
-          {/* No Result Message */}
           {filtered.length === 0 && (
             <p className="text-center text-gray-400 mt-10">No places found.</p>
           )}
-
-          {/* Read More Button */}
           {visibleCount < filtered.length && (
             <div className="text-center mt-6">
               <button

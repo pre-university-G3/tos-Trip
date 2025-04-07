@@ -7,11 +7,10 @@ const ReviewForm = () => {
   const param = useParams();
   const [formData, setFormData] = useState({
     placeUuid: param.uuid,
-    userUuid: "123345asf@Rin",
+    userUuid: "123345f@Rin",
     rating: 0,
     review: ""
   });
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
 

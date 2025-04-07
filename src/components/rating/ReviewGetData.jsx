@@ -49,12 +49,9 @@ export function ReviewGetData() {
           key={index}
           className=" p-4 "
         >
-          {/* Review Text */}
           <p className="text-sm sm:text-base text-gray-800 dark:text-gray-200">
             {review.review}
           </p>
-
-          {/* Rating */}
           <div className="mt-2">
             <Rating value={review.rating} />
           </div>
