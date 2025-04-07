@@ -1,15 +1,19 @@
 import React from "react";
 import { NavbarComponents } from "./NavbarComponents";
 import { Outlet } from "react-router";
+import FooterComponent from "./FooterComponent";
+
 
 export default function RootLayout() {
   return (
-    <div>
+    <div className="font-[Suwannaphum]">
+      {/* navbar */}
       <NavbarComponents />
-      <main className="max-w-screen-xl mx-auto">
+      <main >
         <Outlet />
       </main>
       {/* footer */}
+      <FooterComponent />
     </div>
   );
 }
