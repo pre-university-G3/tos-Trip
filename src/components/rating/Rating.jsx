@@ -7,16 +7,13 @@ const Rating = () => {
 
   useEffect(() => {
     async function fetchRating() {
-      try {
-        const data = await getData("reviews/average"); // ផ្លូវ API ត្រូវតែផ្តល់ rating ជាស្រាប់
-        if (data && data.averageRating !== undefined) {
-          setAverageRating(Math.round(data.averageRating)); // បើតម្លៃមានក្រិតទសភាគ
-        }
-      } catch (err) {
-        console.error("Failed to fetch rating:", err);
+      const data = await getData("reviews");
+      if (Array.isArray(data) && data.length > 0) {
+        const total = data.reduce((sum, review) => sum + review.rating, 0);
+        const average = total / data.length;
+        setAverageRating(Math.round(average));
       }
     }
-
     fetchRating();
   }, []);
 
@@ -25,12 +22,11 @@ const Rating = () => {
       {[...Array(5)].map((_, index) => (
         <FaStar
           key={index}
-          className={`text-[16px] ${
-            index < averageRating ? "text-yellow-400" : "text-gray-300"
-          }`}
+          className={`text-xl ${index < averageRating ? "text-yellow-400" : "text-gray-300"
+            }`}
         />
       ))}
-      <span className="ml-2 text-[10px] px-2 py-1 rounded bg-Primary text-white ">
+      <span className="ml-2 text-[12px] px-2 py-1 rounded bg-Primary text-white ">
         {averageRating} / 5
       </span>
     </div>

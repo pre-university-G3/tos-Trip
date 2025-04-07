@@ -70,7 +70,7 @@ const ReviewForm = () => {
       </div>
       <textarea
         name="review"
-        placeholder="Write your review..."
+        placeholder="សរសេរការវាយតម្លៃរបស់អ្នក..."
         value={formData.review}
         onChange={handleChange}
         className="w-full border p-2 rounded"
