@@ -3,10 +3,13 @@ import hero2 from '../../../assets/At the office-rafiki.png';
 
 const ContactForm = () => {
   return (
-    <section className="bg-white py-10 px-4 md:px-12 mt-10">
+    <section className="bg-white  px-4 md:px-12 mt-10">
+       <h1 className="text-2xl md:text-4xl text-center text-Primary mb-10 md:mb-12">
+       ទំនាក់ទំនងមកកាន់យើង
+            </h1>
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
         
-        {/* Left - Image */}
+        
         <div className="w-full md:w-1/2 flex justify-center">
           <img
             src={hero2}
@@ -49,7 +52,7 @@ const ContactForm = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="w-full sm:w-[200px] h-[50px] bg-Primary text-white rounded-lg font-medium hover:bg-orange-400 transition duration-300"
+                className="w-full  h-[50px] bg-Primary text-white rounded-lg font-medium hover:bg-orange-400 transition duration-300"
               >
                 បញ្ជូន
               </button>

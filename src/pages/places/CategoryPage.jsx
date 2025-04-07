@@ -37,12 +37,12 @@ const CategoryPage = () => {
               backgroundPosition: "center",
             }}
           >
-            <div className="absolute inset-0  grayscale-25 rounded-lg"></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-heade z-10 text-center px-4">
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold mb-4 bg-black-40">
+            <div className="absolute inset-0   grayscale-25 rounded-lg"></div>
+            <div className="absolute top-1/2 left-1/2 bg-black/30 backdrop-blur-none rounded-sm  p-10 transform -translate-x-1/2 -translate-y-1/2 text-heade z-10 text-center px-4">
+              <h1 className="text-3xl sm:text-5xl text-Primary md:text-6xl font-bold mb-4 bg-black-40">
                 {category.name}
               </h1>
-              <p className="text-sm sm:text-base md:text-lg text-sky-200 max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base md:text-lg text-white max-w-2xl mx-auto">
                 {category.description}
               </p>
             </div>
@@ -55,7 +55,9 @@ const CategoryPage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {category.places.map((place, index) => (
           <Card key={index}>
-            <Link to={`/place/${place.uuid}`}>
+            <Link to={`/place/${place.uuid}`}
+            onClick={() => setTimeout(() => window.location.reload(), 0)}
+            >
               <img
                 className="rounded-t-lg object-cover h-48 w-full"
                 src={
@@ -65,7 +67,7 @@ const CategoryPage = () => {
                 alt={place.name}
               />
             </Link>
-            <div className="p-4">
+            <div className="p-4 ">
               <h2 className="text-lg font-semibold mb-2">{place.name}</h2>
               <p className="text-sm text-gray-600 line-clamp-3 mb-2">
                 {place.description}

@@ -20,7 +20,9 @@ export function PlaceByCategory() {
     <section className="flex flex-wrap justify-center gap-7 bg-white mt-5">
       {places.slice(0, 6).map((place) => (
         <Card key={place.id}  className="max-w-sm  bg-white ">
-           <Link to={`/place/${place.uuid}`}>
+          <Link to={`/place/${place.uuid}`}
+            onClick={() => setTimeout(() => window.location.reload(), 0)}
+          >
             <img
               className="rounded-t-lg  object-cover"
               src={place.imageUrls[0] || "https://eacnews.asia/uploads/images/10265/EAC-NEWS-2022-03-17.png"}

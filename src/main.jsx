@@ -24,10 +24,6 @@ createRoot(document.getElementById("root")).render(
           <Route path="/category/:uuid" element={<CategoryPage />} />
           {/* <Route path="/category/:uuid" element={<About />} /> */}
           
-          {/* <Route
-            path="/products/categories/:uuid"
-            element={<ProductCategoriesPage />}
-          /> */}
         </Route>
         {/* login */}
         {/* <Route path="/login" element={<Login />} /> */}

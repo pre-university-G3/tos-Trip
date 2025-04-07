@@ -15,7 +15,7 @@ const Hero = () => {
         <p className="text-Secondary text-lg md:text-xl mt-4">
           ស្វែងរកទីកន្លែងទេសចរណ៍ក្នុងកម្ពុជាទាំងអស់ ដើម្បីលើកកម្ពស់វិស័យទេសចរណ៍ បង្កើតឱកាសការងារ និងផ្សព្វផ្សាយវប្បធម៌ជាតិអន្តរជាតិ។
         </p>
-        <Link to="/place" >
+        <Link to="/place" onClick={() => setTimeout(() => window.location.reload(), 0)}>
           <Button color="#faa834" size="lg" className="bg-Primary text-white
                mt-10 px-6 py-3 rounded-lg flex  items-center justify-center  
              hover:bg-[#eb5a00] transition duration-300 ease-in-out cursor-pointer">

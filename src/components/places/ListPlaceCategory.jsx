@@ -27,7 +27,8 @@ export function ListPlaceCategory() {
     <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-4 bg-white">
       {typeCategory.map((item, index) => (
         <Link
-          to={`/category/${item.uuid}`}
+          to={`/category/${item.uuid}  `}
+          onClick={() => setTimeout(() => window.location.reload(), 0)}
           key={item.id}
           className="group hover:shadow-lg transition-shadow"
         >

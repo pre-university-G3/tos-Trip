@@ -1,25 +1,29 @@
 import React, { useState } from "react";
-import postData from "../../services/post/postData"; // adjust the path as needed
+import postData from "../../services/post/postData";
 import { useParams } from "react-router";
+import { FaStar } from "react-icons/fa"; // Import star icons
 
 const ReviewForm = () => {
   const param = useParams();
-  console.log('param', param);
   const [formData, setFormData] = useState({
     placeUuid: param.uuid,
-    userUuid:'123345Rin' ,
-    rating: 5,
+    userUuid: "123345asf@Rin",
+    rating: 0,
     review: ""
   });
-
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
 
+  const handleRatingClick = (value) => {
+    setFormData((prev) => ({ ...prev, rating: value }));
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: name === "rating" ? Number(value) : value
+      [name]: value
     }));
   };
 
@@ -31,16 +35,16 @@ const ReviewForm = () => {
     try {
       const response = await postData("reviews", formData);
       console.log("Response:", response);
-      setMessage("✅ Review submitted successfully!");
+      setMessage(" ការវាយតម្លៃត្រូវបានដាក់ជូនដោយជោគជ័យ!");
       setFormData({
         placeUuid: "",
         userUuid: "",
-        rating: 5,
+        rating: 0,
         review: ""
       });
     } catch (err) {
       console.error("Submission failed:", err);
-      setMessage(" Failed to submit review.");
+      setMessage(" បរាជ័យក្នុងការបញ្ជូនការវាយតម្លៃ");
     } finally {
       setIsSubmitting(false);
     }
@@ -49,39 +53,21 @@ const ReviewForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="  bg-white shadow-md rounded-lg py-10 px-10 my-10  space-y-4"
+      className="bg-white shadow-md rounded-lg py-10 px-10 my-10 space-y-4"
     >
-      <h2 className="text-xl font-bold">Leave a Review</h2>
-
-      {/* <input
-        type="text"
-        name="placeUuid"
-        placeholder="Place UUID"
-        value={formData.placeUuid}
-        onChange={handleChange}
-        className="w-full border p-2 rounded"
-        required
-      />
-      <input
-        type="text"
-        name="userUuid"
-        placeholder="User UUID"
-        value={formData.userUuid}
-        onChange={handleChange}
-        className="w-full border p-2 rounded"
-        required
-      /> */}
-      <input
-        type="number"
-        name="rating"
-        placeholder="Rating (1-5)"
-        value={formData.rating}
-        onChange={handleChange}
-        min={1}
-        max={5}
-        className="w-full border p-2 rounded"
-        required
-      />
+      <h2 className="text-xl font-bold">ទម្រង់វាយតម្លៃ​​</h2>
+      <div className="flex items-center space-x-1">
+        {[1, 2, 3, 4, 5].map((value) => (
+          <FaStar
+            key={value}
+            size={30}
+            className={`cursor-pointer transition-colors ${
+              value <= formData.rating ? "text-yellow-400" : "text-gray-300"
+            }`}
+            onClick={() => handleRatingClick(value)}
+          />
+        ))}
+      </div>
       <textarea
         name="review"
         placeholder="Write your review..."
@@ -95,9 +81,9 @@ const ReviewForm = () => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        className="w-full bg-Primary text-white py-2 rounded hover:bg-blue-700"
       >
-        {isSubmitting ? "Submitting..." : "Submit Review"}
+        {isSubmitting ? "កំពុងបញ្ចូន..." : "បញ្ចូន"}
       </button>
 
       {message && <p className="text-sm mt-2">{message}</p>}

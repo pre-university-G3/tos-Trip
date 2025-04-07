@@ -43,18 +43,26 @@ export function ReviewGetData() {
   if (reviews.length === 0) return <p>No reviews for this place.</p>;
 
   return (
-    <div className="overflow-y-auto">
+    <div className="max-h-96 overflow-y-auto space-y-4 px-6">
       {reviews.map((review, index) => (
-        <div key={index} className="text-center bg-Snow p-10 rounded-lg">
-          <p className="text-md sm:text-lg md:text-xl font-bold text-heade dark:text-white">
+        <div
+          key={index}
+          className=" p-4 "
+        >
+          {/* Review Text */}
+          <p className="text-sm sm:text-base text-gray-800 dark:text-gray-200">
             {review.review}
           </p>
-          <p className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-300 mt-2">
-            <Rating />
-          </p>
+
+          {/* Rating */}
+          <div className="mt-2">
+            <Rating value={review.rating} />
+          </div>
         </div>
       ))}
     </div>
+
+
 
   );
 }

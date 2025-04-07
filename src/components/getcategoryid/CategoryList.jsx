@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import getData from "../../services/get/getData";
-import {  Spinner } from "flowbite-react";
-import { Link } from "react-router";
+import { Spinner } from "flowbite-react";
+import { Link } from "react-router"; 
 import Rating from "../rating/Rating";
 
 export default function CategoryList() {
@@ -12,11 +12,12 @@ export default function CategoryList() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [sortBy, setSortBy] = useState("name");
   const [loading, setLoading] = useState(true);
-  const [isOpen, setIsOpen] = useState(false);  // <-- Add state for dropdown visibility
+  const [isOpen, setIsOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(12); 
 
   useEffect(() => {
     async function fetchData() {
-      setLoading(true); // Start loading
+      setLoading(true);
       try {
         const [placesData, categoriesData] = await Promise.all([
           getData("places"),
@@ -28,7 +29,7 @@ export default function CategoryList() {
       } catch (error) {
         console.error("Error fetching categories or places:", error);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     }
 
@@ -38,9 +39,7 @@ export default function CategoryList() {
   useEffect(() => {
     let list = [...places];
     if (selectedCategory) {
-      list = list.filter(
-        (place) => place.category?.name === selectedCategory
-      );
+      list = list.filter((place) => place.category?.name === selectedCategory);
     }
     if (search) {
       list = list.filter((place) =>
@@ -52,20 +51,21 @@ export default function CategoryList() {
     }
 
     setFiltered(list);
+    setVisibleCount(12); // ✅ Reset to 12 on new filter/search
   }, [search, selectedCategory, sortBy, places]);
 
-  // Handle category selection
   const handleSelect = (value) => {
     setSelectedCategory(value);
-    setIsOpen(false);  // Close dropdown after selection
+    setIsOpen(false);
   };
 
   return (
     <div className="p-6">
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 px-[8%]">
+        {/* Category Dropdown */}
         <div className="relative w-full sm:w-1/4">
           <button
-            onClick={() => setIsOpen(!isOpen)} // Toggle dropdown visibility
+            onClick={() => setIsOpen(!isOpen)}
             className="w-full border border-gray-300 p-2 rounded bg-white text-left text-gray-800 focus:outline-none focus:ring-2 focus:ring-Primary"
           >
             {selectedCategory || "កន្លែងទេសចរណ៍​ទាំងអស់"}
@@ -90,6 +90,8 @@ export default function CategoryList() {
             </ul>
           )}
         </div>
+
+        {/* Search Input */}
         <input
           type="text"
           placeholder="ស្វែងរកទីកន្លែង..."
@@ -98,20 +100,25 @@ export default function CategoryList() {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
+
       <hr className="my-8 border-t border-gray-300" />
+
       {loading ? (
         <div className="flex justify-center items-center mt-10">
           <Spinner aria-label="Loading places..." size="xl" />
         </div>
       ) : (
         <>
+          {/* Place Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 px-[8%]">
-            {filtered.slice(0, 12).map((place) => (
+            {filtered.slice(0, visibleCount).map((place) => (
               <div
                 key={place.id}
                 className="max-w-sm w-full bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300"
               >
-                <Link to={`/place/${place.uuid}`}>
+                <Link to={`/place/${place.uuid}`}
+                  onClick={() => setTimeout(() => window.location.reload(), 0)}
+                >
                   <img
                     className="w-full h-48 object-cover"
                     src={
@@ -128,13 +135,30 @@ export default function CategoryList() {
                   <p className="text-sm text-gray-600 mt-2 line-clamp-3">
                     {place.description || "No description"}
                   </p>
-                <Rating />
+                  <Rating />
                 </div>
               </div>
             ))}
           </div>
+
+          {/* No Result Message */}
           {filtered.length === 0 && (
             <p className="text-center text-gray-400 mt-10">No places found.</p>
+          )}
+
+          {/* Read More Button */}
+          {visibleCount < filtered.length && (
+            <div className="text-center mt-6">
+              <button
+                onClick={() => {
+                  setVisibleCount((prev) => prev + 12);
+                  setTimeout(() => window.scrollBy(0, 300), 200);
+                }}
+                className="px-6 py-2 bg-Primary text-white rounded-lg hover:bg-orange-400 transition duration-300 cursor-pointer"
+              >
+                មើលបន្ថែម
+              </button>
+            </div>
           )}
         </>
       )}
