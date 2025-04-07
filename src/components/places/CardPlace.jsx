@@ -1,20 +1,21 @@
 import { Card } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import getData from "../../services/get/getData";
-
-import { Link } from "react-router";
+import { Link } from "react-router";  
 import Rating from "../rating/Rating";
 
 export function CardPlace() {
   const [places, setPlaces] = useState([]);
-  const categoryFilter = ["តំបន់វាលរាប", "តំបន់ភ្នំ","តំបន់ប្រាសាទ","តំបន់កោះ","ទីក្រុង"];
+  const categoryFilter = [
+    "តំបន់វាលរាប", "តំបន់ភ្នំ", "តំបន់ប្រាសាទ", "តំបន់កោះ", "ទីក្រុង"
+  ];
   useEffect(() => {
     async function fetchPlaces() {
       const data = await getData("places");
       console.log("Fetched Data:", data);
       if (data) {
-        const filteredPlaces = data.filter(
-          (place) => categoryFilter.includes(place.category?.name)
+        const filteredPlaces = data.filter((place) =>
+          categoryFilter.includes(place.category?.name)
         );
         setPlaces(filteredPlaces);
       }
@@ -25,12 +26,10 @@ export function CardPlace() {
   return (
     <section className="flex flex-wrap justify-center gap-7 bg-white mt-5">
       {places.slice(0, 6).map((place) => (
-        <Card key={place.id}  className="max-w-sm  bg-white ">
-          <Link to={`/place/${place.uuid}`}
-            onClick={() => setTimeout(() => window.location.reload(), 0)}
-          >
+        <Card key={place.id} className="max-w-sm bg-white">
+          <Link to={`/place/${place.uuid}`}>
             <img
-              className="rounded-t-lg  object-cover"
+              className="rounded-t-lg object-cover"
               src={place.imageUrls[0] || "https://eacnews.asia/uploads/images/10265/EAC-NEWS-2022-03-17.png"}
               alt={place.name}
             />
@@ -42,7 +41,7 @@ export function CardPlace() {
             <p className="font-normal text-gray-700 line-clamp-3">
               {place.description || "No description"}
             </p>
-            <Rating  />
+            <Rating placeUuid={place.uuid} />
           </div>
         </Card>
       ))}

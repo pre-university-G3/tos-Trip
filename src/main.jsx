@@ -10,7 +10,8 @@ import Home from "./pages/home/Home.jsx";
 
 import PlaceDetailPage from "./pages/places/PlaceDetailPage.jsx";
 import CategoryPage from "./pages/places/CategoryPage.jsx";
-
+import Dashbard from './pages/admin/Dashbord.jsx'
+import PlaceMangment from "./pages/admin/PlaceMangment.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -27,6 +28,10 @@ createRoot(document.getElementById("root")).render(
         </Route>
         {/* login */}
         {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/admin" element={<Dashbard />} />
+        <Route path="/admin/place" element={<PlaceMangment />} />
+        
+
       </Routes>
     </BrowserRouter>
   </StrictMode>

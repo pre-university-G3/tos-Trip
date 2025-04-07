@@ -131,7 +131,7 @@ export default function CategoryList() {
                   <p className="text-sm text-gray-600 mt-2 line-clamp-3">
                     {place.description || "No description"}
                   </p>
-                  <Rating />
+                  <Rating placeUuid={place.uuid} />
                 </div>
               </div>
             ))}

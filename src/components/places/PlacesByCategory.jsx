@@ -36,7 +36,7 @@ export function PlaceByCategory() {
             <p className="font-normal text-gray-700 line-clamp-3">
               {place.description || "No description"}
             </p>
-            <Rating  />
+            <Rating  placeUuid={place.uuid}​​ />
           </div>
         </Card>
       ))}

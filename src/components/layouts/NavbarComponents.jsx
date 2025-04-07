@@ -4,13 +4,11 @@ import { HiMenu, HiX } from "react-icons/hi";
 import logo from "../../assets/Final_Tostriplogo.png";
 export function NavbarComponents() {
   const [isOpen, setIsOpen] = useState(false);
-
   const menu = [
     { path: "/", title: "ទំព័រដើម" },
     { path: "/place", title: "ដំំំណើរទេសចរណ៍" },
     { path: "/about", title: "អំពីយើង" },
   ];
-
   return (
     <header className="sticky top-0 z-50 bg-[#ffff] shadow-md font-[Suwannaphum]">
       <nav className="max-w-screen-2xl  mx-auto py-4 px-6 md:px-[7%] flex items-center justify-between">

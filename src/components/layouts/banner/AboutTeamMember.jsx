@@ -5,18 +5,21 @@ import tola from '../../../assets/Menber/tola.png';
 import hng from '../../../assets/Menber/l.png';
 import Ton from '../../../assets/Menber/Ton.png';
 import reator from '../../../assets/Menber/tor.png';
-import guest from '../../../assets/Menber/guest.png'
+import na from '../../../assets/Menber/na.png'
+import lang from'../../../assets/Menber/long.png'
+import vin from '../../../assets/Menber/vin.png'
+import daline from '../../../assets/Menber/dalin.jpg'
 
 const teamMembers = [
     { name: "រៀន ចាន់រីន", role: "ប្រធានក្រុម", image: rin },
     { name: "យឹម សុខា", role: "អនុប្រធាន", image: sokha },
     { name: "ឌីតា​​​ វុិកទ័រ", role: "សមាជិក", image: reator },
-    { name: "ម៉ៃ​ សុខលីណា", role: "សមាជិក", image: guest },
+    { name: "ម៉ៃ​ សុខលីណា", role: "សមាជិក", image: na },
     { name: "ហេង ល័ងឈ័រ", role: "សមាជិក", image: hng },
-    { name: "សាយ គីមឡុង", role: "សមាជិក", image: guest },
+    { name: "សាយ គីមឡុង", role: "សមាជិក", image: lang },
     { name: "តុង​​ ទីន", role: "សមាជិក", image: Ton },
-    { name: "ជិន​ ណារិន", role: "សមាជិក", image: guest },
-    { name: "អាន ដាលីន", role: "សមាជិក", image: guest },
+    { name: "ជិន​ ណារិន", role: "សមាជិក", image: vin },
+    { name: "អាន ដាលីន", role: "សមាជិក", image: daline },
     { name: "ណំ តុលា", role: "សមាជិក", image: tola },
 ];
 
