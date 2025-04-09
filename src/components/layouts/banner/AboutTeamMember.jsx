@@ -1,4 +1,4 @@
-jimport React from 'react';
+import React from 'react';
 import rin from '../../../assets/Menber/rin1.png';
 import sokha from '../../../assets/Menber/sokha.png';
 import tola from '../../../assets/Menber/tola.png';
