@@ -20,7 +20,7 @@ createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Routes>
         <Route element={<RootLayout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<App />} />
           <Route path="/place" element={<Place />} />
           <Route path="/place/:uuid" element={<PlaceDetailPage />} />
           <Route path="/about" element={<About />} />
