@@ -30,8 +30,7 @@ createRoot(document.getElementById("root")).render(
           {/* <Route path="/category/:uuid" element={<About />} /> */}
 
         </Route>
-        {/* login */}
-        {/* <Route path="/login" element={<Login />} /> */}
+  
         <Route path="/admin" element={<Dashbard />} />
         <Route path="/admin/place" element={<PlaceMangment />} />
         <Route path="/admin/AppPlace" element={<AddPlaceForm />} />
