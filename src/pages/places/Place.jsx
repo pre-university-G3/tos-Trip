@@ -1,49 +1,17 @@
-
-import React, { useEffect, useState } from 'react';
-import getData from '../../services/get/getData';
+import React from 'react'
+import CategoryList from '../../components/getcategoryid/CategoryList'
+import PlacesBanner from '../../components/layouts/banner/PlacesBanner'
 
 const Place = () => {
-   const [places, setPlaces] = useState([]);
-   const [category, setCategory] = useState([]);
-  
-    useEffect(() => {
-      async function getCategories() {
-        const data = await getData("places"); 
-        const categories = await getData("categories");
-        console.log("Fetched Data:", data); 
-        console.log("Fetched Data:",categories ); 
-        
-        if (Array.isArray(data)) {
-          // setPlaces(data); 
-          setCategory(categories);
-        } else {
-          console.error("Error: API response is not an array", data);
-        }
-      }
-      getCategories();
-    }, []);
-  
   return (
     <div>
-      {
-        // category.map((item, index) => {
-        //   <div key={index}>
-        //     <h1>{item.name}</h1>
-        //     <p>{item.category}</p>
-        //   </div>
-        // })
-
-        category.map((item, index) => {
-          return (
-            <div className='text-zinc-950' key={index}>
-              <h1 className='text-xl font-bold tex-rud-500'>{item.name}</h1>
-              <p className='text-pink-300'>{item.description}</p>
-            </div>
-          )
-        })
-      }
+      <div className='mx-auto max-w-screen-2xl md:px-[7%] px-4 py-10 font-[Suwannaphum]'>
+        <PlacesBanner />
+        <h1 className='text-center text-4xl font-bold mt-20'>កន្លែងទេសចរណ៍</h1>
+        <CategoryList />
+      </div>
     </div>
   )
 }
 
-export default Place
+export default Place;

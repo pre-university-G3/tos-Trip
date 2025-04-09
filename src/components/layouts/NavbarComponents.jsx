@@ -1,28 +1,27 @@
 import { useState } from "react";
-import { NavLink } from "react-router"; 
-import { HiMenu, HiX } from "react-icons/hi"; 
+import { NavLink } from "react-router";
+import { HiMenu, HiX } from "react-icons/hi";
 import logo from "../../assets/Final_Tostriplogo.png";
 export function NavbarComponents() {
   const [isOpen, setIsOpen] = useState(false);
-
   const menu = [
     { path: "/", title: "ទំព័រដើម" },
     { path: "/place", title: "ដំំំណើរទេសចរណ៍" },
     { path: "/about", title: "អំពីយើង" },
   ];
-
   return (
     <header className="sticky top-0 z-50 bg-[#ffff] shadow-md font-[Suwannaphum]">
-      <nav className="max-w-screen-2xl  mx-auto py-4 px-6 md:px-[10%] flex items-center justify-between">
+      <nav className="max-w-screen-2xl  mx-auto py-4 px-6 md:px-[7%] flex items-center justify-between">
         {/* Logo */}
         <div>
-          <NavLink to="/">
+          <NavLink to="/" onClick={() => setTimeout(() => window.location.reload(), 0)}>
             <img src={logo} alt="logo" className="h-15 object-cover" />
           </NavLink>
         </div>
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex space-x-6 gap-15">
           {menu.map((item, index) => (
             <NavLink
+              onClick={() => setTimeout(() => window.location.reload(), 0)}
               key={index}
               className={({ isActive }) =>
                 isActive
@@ -48,11 +47,10 @@ export function NavbarComponents() {
         </button>
       </nav>
       <div
-        className={`md:hidden bg-white absolute w-full top-[60px] left-0 shadow-md transform transition-transform ${
-          isOpen ? "block" : "hidden"
-        }`}
+        className={`md:hidden bg-white absolute w-full top-[60px] left-0 shadow-md transform transition-transform ${isOpen ? "block" : "hidden"
+          }`}
       >
-        <div className="flex flex-col items-center space-y-4 py-4">
+        <div className="flex flex-col items-center space-y-4 py-5">
           {menu.map((item, index) => (
             <NavLink
               key={index}
