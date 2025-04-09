@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import getData from "../../services/get/getData";
 import { Link } from "react-router";
+import DeletePlace from "./DeletePlace";
+
+import EitdPlaceForm from "./EitdPlaceForm";
 const PlaceDashboard = () => {
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,18 +39,14 @@ const PlaceDashboard = () => {
       const placeCreatedAt = new Date(place.createdAt);
       return placeCreatedAt >= thirtyDaysAgo;
     });
-
     setFilteredPlaces(recentPlaces);
   }, [places]);
-
   const filteredAndSearchedPlaces = filteredPlaces.filter((place) =>
     place.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     place.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
     place.category.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
   const limitedPlaces = filteredAndSearchedPlaces.slice(0, 10);
-
   if (loading) {
     return (
       <div className="flex justify-center items-center py-4">
@@ -55,18 +54,15 @@ const PlaceDashboard = () => {
       </div>
     );
   }
-
-
   if (error) {
     return <div className="text-center py-4 text-red-600">{error}</div>;
   }
-
   return (
-    <div className="min-h-screen bg-gray-100 p-6 ">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">ការគ្រប់គ្រងទីកន្លែង</h1>
+    <div className="min-h-screen bg-gray-100 p-6 font-[Suwannaphum] ">
+      <h1 className="text-5xl font-bold mb-6 text-gray-800">ការគ្រប់គ្រងទីកន្លែង</h1>
       <div className="flex justify-end my-10">
         <Link to="/admin/AppPlace " >
-          <button className="px-5 py-2  bg-Primary flex justify-end rounded-md text-white cursor-pointer">បន្ថែមទីកន្លែង</button>
+          <div className="px-5 py-2  bg-blue-500 hover:bg-blue-600 flex justify-end rounded-md text-white cursor-pointer"> <p>បន្ថែមទីកន្លែង +</p> </div>
         </Link>
       </div>
       <div className="bg-white rounded-2xl shadow-md p-6 overflow-x-auto">
@@ -82,7 +78,6 @@ const PlaceDashboard = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-
         <table className="w-full text-left border-collapse table-auto bg-white rounded-lg shadow-md overflow-hidden">
           <thead className="bg-gray-100 text-gray-700">
             <tr className="text-sm font-semibold">
@@ -90,7 +85,7 @@ const PlaceDashboard = () => {
               <th className="px-6 text-left">ពិពណ៌នា</th>
               <th className="px-6 text-left">ប្រភេទ</th>
               <th className="px-6 text-left">រូបភាព</th>
-              <th className="px-6 text-center">អនុកម្ម</th>
+              <th className="px-6 text-center">កែ/លុប</th>
             </tr>
           </thead>
           <tbody>
@@ -113,14 +108,14 @@ const PlaceDashboard = () => {
                     className="w-full h-full object-cover rounded-md shadow-sm"
                   />
                 </td>
-                <td className="px-6 py-4 text-sm text-center space-x-2">
-                  <button className="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md text-xs transition-colors">
-                    Edit
-                  </button>
-                  <button className="px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-md text-xs transition-colors">
-                    Delete
-                  </button>
+                <td className="px-6 py-4 text-sm text-center space-x-2 flex justify-center items-center">
+                  <Link className="px-4 py-2 bg-Primary cursor-pointer hover:bg-[#d4c186] text-white text-xs rounded-md transition-colors" to={`/admin/AppPlace/${place.uuid}`} >
+                    <p>Edit</p>
+                  </Link>
+                  <DeletePlace placeUuid={place.uuid} />
                 </td>
+
+
               </tr>
             ))}
           </tbody>

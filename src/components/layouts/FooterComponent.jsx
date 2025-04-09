@@ -30,7 +30,7 @@ const FooterComponent = () => {
               </ul>
             </div>
             <div className="text-left md:text-center">
-              <h4 className="text-lg mb-4 text-Primary">ទំនាក់ទំនង</h4>
+              <h4 className="text-lg mb-2 text-Primary">ទំនាក់ទំនង</h4>
               <ul className="space-y-3 text-gray-600 text-sm">
                 <li className="flex tems-start justify-start lg:justify-start gap-2 hover:text-Primary transition-colors duration-200">
                   <MdOutlineMail className="text-sm" />

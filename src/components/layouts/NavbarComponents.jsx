@@ -50,7 +50,7 @@ export function NavbarComponents() {
         className={`md:hidden bg-white absolute w-full top-[60px] left-0 shadow-md transform transition-transform ${isOpen ? "block" : "hidden"
           }`}
       >
-        <div className="flex flex-col items-center space-y-4 py-4">
+        <div className="flex flex-col items-center space-y-4 py-5">
           {menu.map((item, index) => (
             <NavLink
               key={index}

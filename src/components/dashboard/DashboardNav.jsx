@@ -8,19 +8,21 @@ const DashboardNav = () => {
       <h1 className="text-2xl font-bold mb-12">
         <img src={logo} alt="logo" className="w-30 h-25" />
       </h1>
-      <nav className="space-y-6">
+      <nav className="space-y-6 pt-10">
         <div className="flex items-center space-x-2 text-gray-800 hover:text-Primary cursor-pointer ">
-          <Link to="/admin">
+          <Link to="/admin" className="flex gap-5">
             <FaUser />
-            <span>អ្នកប្រើប្រាស់</span>
+            <span className="text-sm md:text-base">អ្នកប្រើប្រាស់</span>
           </Link>
         </div>
-        <div className="flex items-center space-x-2 text-gray-800 hover:text-Primary cursor-pointer">
-          <Link to='/admin/place'>
+        <hr className=" border-t border-gray-300" />
+        <div className="flex items-center space-x-2 text-gray-800 my-2 hover:text-Primary cursor-pointer">
+          <Link to='/admin/place'  className="flex gap-5 my-2">
             <FaMapMarkerAlt />
-            <span>ទីតាំង</span>
+            <span  className="flex gap-5">ទីតាំង</span>
           </Link>
         </div>
+        <hr className=" border-t border-gray-300" />
       </nav>
     </div>
   );
