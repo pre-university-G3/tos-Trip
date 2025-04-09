@@ -13,7 +13,7 @@ import daline from '../../../assets/Menber/dalin.jpg'
 const teamMembers = [
     { name: "រៀន ចាន់រីន", role: "ប្រធានក្រុម", image: rin },
     { name: "យឹម សុខា", role: "អនុប្រធាន", image: sokha },
-    { name: "ឌីតា​​​ វុិកទ័រ", role: "សមាជិក", image: reator },
+    { name: "ឌីតា រុិកទ័រ", role: "សមាជិក", image: reator },
     { name: "ម៉ៃ​ សុខលីណា", role: "សមាជិក", image: na },
     { name: "ហេង ល័ងឈ័រ", role: "សមាជិក", image: hng },
     { name: "សាយ គីមឡុង", role: "សមាជិក", image: lang },
