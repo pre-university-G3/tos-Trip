@@ -14,6 +14,8 @@ import Dashbard from './pages/admin/Dashbord.jsx'
 import PlaceMangment from "./pages/admin/PlaceMangment.jsx";
 import AddPlaceForm from "./components/dashboard/AddPlaceForm.jsx";
 import EditPlaceForm from "./components/dashboard/EitdPlaceForm.jsx";
+import Login from "./auth/login/index.jsx";
+import Register from "./auth/register/index.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -34,6 +36,11 @@ createRoot(document.getElementById("root")).render(
         <Route path="/admin/place" element={<PlaceMangment />} />
         <Route path="/admin/AppPlace" element={<AddPlaceForm />} />
         <Route path="/admin/AppPlace/:placeUuid" element={<EditPlaceForm />} />
+
+
+        {/* auth */}
+        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/register" element={<Register />} />
 
       </Routes>
     </BrowserRouter>

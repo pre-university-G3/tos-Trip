@@ -6,6 +6,7 @@ export default async function postData(endpoint, body) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
+      mode: 'cors'
     });
 
     if (!response.ok) {
