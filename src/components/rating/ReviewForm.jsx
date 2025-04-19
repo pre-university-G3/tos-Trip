@@ -7,11 +7,10 @@ const ReviewForm = () => {
   const param = useParams();
   const [formData, setFormData] = useState({
     placeUuid: param.uuid,
-    userUuid: "123345asf@Rin",
+    userUuid: "123345f@Rin",
     rating: 0,
     review: ""
   });
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -70,7 +69,7 @@ const ReviewForm = () => {
       </div>
       <textarea
         name="review"
-        placeholder="Write your review..."
+        placeholder="សរសេរការវាយតម្លៃរបស់អ្នក..."
         value={formData.review}
         onChange={handleChange}
         className="w-full border p-2 rounded"

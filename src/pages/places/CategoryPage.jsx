@@ -72,7 +72,7 @@ const CategoryPage = () => {
               <p className="text-sm text-gray-600 line-clamp-3 mb-2">
                 {place.description}
               </p>
-              <Rating />
+              <Rating  placeUuid={place.uuid}/>
             </div>
           </Card>
         ))}

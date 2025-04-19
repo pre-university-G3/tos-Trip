@@ -1,16 +1,16 @@
 import React from 'react';
 import hero2 from '../../../assets/hero2.png';
-
+import team from '../../../assets/Menber/team.png'
 const AboutBanner = () => {
   return (
     <div className="px-4 md:px-[8%]">
       <div className="bg-bg-Snow py-10 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-10 items-center">
+          <div className='bg-black/20'>
             <img
-              src={hero2}
+              src={team}
               alt="Team"
-              className="w-full h-auto object-cover rounded-lg max-w-full"
+              className="w-full brightness-80 h-auto object-cover rounded-lg  max-w-full"
             />
           </div>
 

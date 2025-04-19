@@ -1,10 +1,9 @@
 import React from 'react'
+import Home from './pages/home/Home'
 const App = () => {
   return (
     <>
-      <h1 className="text-2xl font-bold underline">
-        Hello world!
-      </h1>
+      <Home />
     </>
   )
 }

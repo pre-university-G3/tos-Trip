@@ -24,8 +24,8 @@ const AboutMentor = () => {
                 className="w-full h-64 md:h-80 object-cover"
               />
               <div className="absolute bottom-0 bg-black/50  text-white w-full text-center p-4">
-                <p className="text-lg md:text-xl font-bold">{member.name}</p>
-                <p className="text-sm mt-2">{member.role}</p>
+                <p className="text-lg md:text-xl font-bold text-Primary">{member.name}</p>
+                <p className="text-sm mt-2 te">{member.role}</p>
               </div>
             </div>
           ))
