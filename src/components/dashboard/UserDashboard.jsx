@@ -1,16 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaUsers, FaUserCheck, FaUserTimes } from "react-icons/fa";
-
-const users = [
-  { email: "john.doe123@gmail.com", date: "Apr 23, 2025", role: "admin", status: "active" },
-  { email: "jane.smith456@gmail.com", date: "Apr 23, 2025", role: "user", status: "active" },
-  { email: "sarah.davis.test@gmail.com", date: "Apr 18, 2025", role: "user", status: "banned" },
-  { email: "sophia.martin.mail@gmail.com", date: "Apr 15, 2025", role: "user", status: "banned" },
-  { email: "harper.young.ai@gmail.com", date: "Apr 15, 2025", role: "user", status: "active" },
-  { email: "chris.taylor.work@gmail.com", date: "Apr 11, 2025", role: "admin", status: "active" },
-];
+import { Link } from "react-router";
+import getData from "../../services/get/getData"; 
 
 const UserDashboard = () => {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const data = await getData("users");
+        if (data && data.length > 0) {
+          setUsers(data);
+        } else {
+          setUsers([
+            {
+              email: "ghost1@example.com",
+              date: "2025-04-01",
+              role: "ghost",
+              status: "active",
+            },
+            {
+              email: "ghost2@example.com",
+              date: "2025-04-02",
+              role: "ghost",
+              status: "banned",
+            },
+          ]);
+        }
+      } catch (err) {
+        console.error("Error fetching users:", err);
+        setError("Failed to fetch users.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
   const stats = [
     {
       label: "ចំនួនអ្នកប្រើសរុប",
@@ -20,23 +50,33 @@ const UserDashboard = () => {
     },
     {
       label: "អ្នកប្រើសកម្ម",
-      value: users.filter(u => u.status === "active").length,
+      value: users.filter((u) => u.status === "active").length,
       growth: "+8%",
       icon: <FaUserCheck className="w-6 h-6 text-green-500" />,
     },
     {
       label: "អ្នកប្រើស្ដី",
-      value: users.filter(u => u.status === "banned").length,
+      value: users.filter((u) => u.status === "banned").length,
       growth: "+15%",
       icon: <FaUserTimes className="w-6 h-6 text-red-500" />,
     },
   ];
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center py-4">
+        <div className="border-4 border-t-4 border-gray-200 border-t-blue-500 rounded-full w-16 h-16 animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="text-center text-red-600">{error}</div>;
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 p-6 font-khmer">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">User Dashboard</h1>
-
-      {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
         {stats.map((stat, i) => (
           <div key={i} className="bg-white p-5 rounded-2xl shadow-md flex items-center gap-4">
@@ -50,7 +90,13 @@ const UserDashboard = () => {
         ))}
       </div>
 
-      {/* Table */}
+      <div className="mb-4">
+        <Link to={"/auth/register"}>
+          <div className="inline-block bg-blue-500 text-white px-4 py-2 rounded-md shadow hover:bg-blue-600 transition-all cursor-pointer">
+            ចុះឈ្មោះ
+          </div>
+        </Link>
+      </div>
       <div className="bg-white rounded-2xl shadow-md p-6 overflow-x-auto">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-4">
           <select className="border border-gray-300 p-2 rounded-md shadow-sm">
@@ -76,7 +122,7 @@ const UserDashboard = () => {
             {users.map((user, idx) => (
               <tr
                 key={idx}
-                className="border-b last:border-none hover:bg-gray-50 transition-colors"
+                className={`border-b last:border-none hover:bg-gray-50 transition-colors ${user.role === "ghost" ? "opacity-70 italic" : ""}`}
               >
                 <td className="py-3 px-2 text-sm text-gray-800">{user.email}</td>
                 <td className="px-2 text-sm text-gray-700">{user.date}</td>

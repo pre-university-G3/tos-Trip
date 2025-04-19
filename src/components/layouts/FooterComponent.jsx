@@ -8,9 +8,15 @@ const FooterComponent = () => {
   return ( 
     <footer className="px-6 sm:px-10 md:px-[8%] py-10 shadow-md hover:shadow-xl transition-shadow duration-300 bg-gray-100 font-[Suwannaphum]">
       <div className="max-w-7xl mx-auto">
+<<<<<<< HEAD
         <div className="flex justify-between items-center flex-col lg:flex-row gap-8 ml">
           <div className="flex justify-center lg:justify-start">
             <img src={logo} alt="Tos Trip logo" className="w-25 h-20" />
+=======
+        <div className="flex justify-between items-center flex-col lg:flex-row gap-8">
+          <div className="flex justify-center lg:justify-start">
+            <img src={logo} alt="Tos Trip logo" className="w-20 h-18" />
+>>>>>>> development
           </div> 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10  ">
             <div className="text-left md:text-cente​r ">

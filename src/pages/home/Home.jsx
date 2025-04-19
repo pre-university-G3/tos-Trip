@@ -1,5 +1,5 @@
 import Hero from '../../components/layouts/banner/Hero';
-import { CardPlace } from '../../components/places/CardPlace';
+import  CardPlace  from '../../components/places/CardPlace';
 import {  ListPlaceCategory } from '../../components/places/ListPlaceCategory';
 import PopularPlaces from '../../components/places/PopularPlaces';
 import TitleHomepage from '../../components/Title/TitleHomepage';
