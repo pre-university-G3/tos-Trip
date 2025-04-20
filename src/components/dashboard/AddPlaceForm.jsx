@@ -21,6 +21,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const AddPlaceForm = () => {
+  const [imageURLs, setImageURLs] = useState([])
   const [images, setImages] = useState([]);
   const [previewUrls, setPreviewUrls] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -43,10 +44,18 @@ const AddPlaceForm = () => {
       });
 
       const data = await res.json();
-      return data.uris || data.urls || data.imageUrls || [];
+      var urls = [];
+      data?.map(e => urls.push(e.uri))
+     
+      return urls;
+
+      // console.log(data);
+
+      // return data.uri || data.url || data.imageUrls || [];
     } catch (err) {
       console.error("Image upload error:", err);
       alert("Image upload failed. Please try again.");
+      
       return [];
     } finally {
       setUploading(false);
@@ -56,12 +65,11 @@ const AddPlaceForm = () => {
   const handleSubmit = async (values, { resetForm }) => {
     try {
       const imageUrls = await uploadImages();
-      console.log(imageUrls)
 
-      if (!imageUrls || imageUrls.length === 0) {
-        alert("សូមជ្រើសរើសរូបភាពមុនពេលបញ្ចូន");
-        return;
-      }
+      // if (!imageUrls || imageUrls.length === 0) {
+      //   alert("សូមជ្រើសរើសរូបភាពមុនពេលបញ្ចូន");
+      //   return;
+      // }
 
       const { latitude, longitude, ...rest } = values;
 
@@ -74,14 +82,17 @@ const AddPlaceForm = () => {
       }
 
       const placeData = {
-        ...rest,
-        latitude: lat,
-        longitude: lng,
-        location: `${lat},${lng}`,
-        imageUrls,
-        userUuid: imageUrls, 
-      };
 
+ 
+
+        // ...rest,
+        // latitude: lat,
+        // longitude: lng,
+        // location: `${lat},${lng}`,
+        // imageUrls,
+        // userUuid: "YOUR_STATIC_USER_UUID_HERE", 
+      };
+      console.log(placeData)
       const response = await fetch("https://tostrip.eunglyzhia.social/api/v1/places", {
         method: "POST",
         headers: {
