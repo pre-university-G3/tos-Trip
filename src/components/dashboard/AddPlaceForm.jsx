@@ -9,8 +9,14 @@ const validationSchema = Yup.object().shape({
   entryFee: Yup.number()
     .required("តម្រូវអោយបំពេញថ្លៃចូល")
     .min(0, "តម្លៃចូលត្រូវតែជាសូន្យ ឬជាលេខវិជ្ជមាន"),
-  latitude: Yup.number().required("តម្រូវអោយបំពេញរយៈទទឹងរ").min(-90).max(90, "Latitude must be between -90 and 90"),
-  longitude: Yup.number().required("តម្រូវអោយបំពេញរយៈបណ្តោយ").min(-180).max(180, "Longitude must be between -180 and 180"),
+  latitude: Yup.number()
+    .required("តម្រូវអោយបំពេញរយៈទទឹងរ")
+    .min(-90)
+    .max(90, "Latitude must be between -90 and 90"),
+  longitude: Yup.number()
+    .required("តម្រូវអោយបំពេញរយៈបណ្តោយ")
+    .min(-180)
+    .max(180, "Longitude must be between -180 and 180"),
   categoryName: Yup.string().required("សូមជ្រើសរើសប្រភេទ "),
 });
 
@@ -18,21 +24,25 @@ const AddPlaceForm = () => {
   const [images, setImages] = useState([]);
   const [previewUrls, setPreviewUrls] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const handleImageChange = (e) => {
+    const selectedFiles = Array.from(e.target.files);
+    setImages(selectedFiles);
+
+    const urls = selectedFiles.map((file) => URL.createObjectURL(file));
+    setPreviewUrls(urls);
+  };
 
   const uploadImages = async () => {
     setUploading(true);
     try {
       const form = new FormData();
-      images.forEach((img) => form.append("files[]", img)); 
-
+      images.forEach((img) => form.append("files", img));
       const res = await fetch("https://tostrip.eunglyzhia.social/api/v1/upload/multiple", {
         method: "POST",
         body: form,
-        mode:"cors"
       });
 
       const data = await res.json();
-      console.log("Image upload response:", data);
       return data.uris || data.urls || data.imageUrls || [];
     } catch (err) {
       console.error("Image upload error:", err);
@@ -44,50 +54,63 @@ const AddPlaceForm = () => {
   };
 
   const handleSubmit = async (values, { resetForm }) => {
-    const imageUrls = await uploadImages();
-    if (imageUrls.length === 0) return;
-
-    const { latitude, longitude, ...rest } = values;
-    const placeData = {
-      ...rest,
-      latitude,
-      longitude,
-      location: `${latitude},${longitude}`,
-      imageUrls,
-    };
-
     try {
-      console.log("Submitting placeData:", placeData);
+      const imageUrls = await uploadImages();
+      console.log(imageUrls)
+
+      if (!imageUrls || imageUrls.length === 0) {
+        alert("សូមជ្រើសរើសរូបភាពមុនពេលបញ្ចូន");
+        return;
+      }
+
+      const { latitude, longitude, ...rest } = values;
+
+      const lat = parseFloat(latitude);
+      const lng = parseFloat(longitude);
+
+      if (isNaN(lat) || isNaN(lng)) {
+        alert("ទីតាំងមិនត្រឹមត្រូវទេ");
+        return;
+      }
+
+      const placeData = {
+        ...rest,
+        latitude: lat,
+        longitude: lng,
+        location: `${lat},${lng}`,
+        imageUrls,
+        userUuid: imageUrls, 
+      };
+
       const response = await fetch("https://tostrip.eunglyzhia.social/api/v1/places", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(placeData),
-        mode: "cors",
       });
 
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Server error:", response.status, errorText);
+        alert("បញ្ហាក្នុងការបញ្ចូនទិន្នន័យ: " + response.status);
+        return;
+      }
+
       const responseData = await response.json();
-      console.log("API Response:", responseData);
-      alert("ទីកន្លែងបានបញ្ចូនដោយជោគជ័យ!");
+      alert("🏕️ ទីកន្លែងបានបញ្ចូនដោយជោគជ័យ!");
+
       resetForm();
       setImages([]);
       setPreviewUrls([]);
     } catch (err) {
       alert("មានបញ្ហាពេលបញ្ចូនទិន្នន័យ");
-      console.error("Error details:", err);
+      console.error("Error during submission:", err);
     }
   };
 
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    setImages(files);
-    const previews = files.map((file) => URL.createObjectURL(file));
-    setPreviewUrls(previews);
-  };
-
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white border-gray-300 border-2  rounded-2xl shadow-md font-[Suwannaphum] mt-10">
+    <div className="max-w-3xl mx-auto p-6 bg-white border-gray-300 border-2 rounded-2xl shadow-md font-[Suwannaphum] mt-10">
       <h2 className="text-2xl font-semibold mb-4 text-center">បន្ថែមទីកន្លែងថ្មី</h2>
 
       <Formik
@@ -106,12 +129,9 @@ const AddPlaceForm = () => {
         {({ values }) => (
           <Form className="space-y-4">
             <label htmlFor="name">ឈ្មោះទីកន្លែង</label>
-            <Field
-              name="name"
-              placeholder="ឈ្មោះទីកន្លែង"
-              className="w-full p-3 border border-gray-300 rounded-md"
-            />
+            <Field name="name" placeholder="ឈ្មោះទីកន្លែង" className="w-full p-3 border border-gray-300 rounded-md" />
             <ErrorMessage name="name" component="div" className="text-red-500 text-sm" />
+
             <label htmlFor="description">ពិពណ៌នា</label>
             <Field
               as="textarea"
@@ -125,11 +145,7 @@ const AddPlaceForm = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="w-full sm:w-1/2">
                 <label htmlFor="openHours">ម៉ោងបើក</label>
-                <Field
-                  name="openHours"
-                  placeholder="ម៉ោងបើក"
-                  className="w-full p-3 border border-gray-300 rounded-md"
-                />
+                <Field name="openHours" placeholder="ម៉ោងបើក" className="w-full p-3 border border-gray-300 rounded-md" />
                 <ErrorMessage name="openHours" component="div" className="text-red-500 text-sm" />
               </div>
               <div className="w-full sm:w-1/2">
@@ -148,20 +164,12 @@ const AddPlaceForm = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="w-full sm:w-1/2">
                 <label htmlFor="latitude">Latitude</label>
-                <Field
-                  name="latitude"
-                  placeholder="Latitude"
-                  className="w-full p-3 border border-gray-300 rounded-md"
-                />
+                <Field name="latitude" placeholder="Latitude" className="w-full p-3 border border-gray-300 rounded-md" />
                 <ErrorMessage name="latitude" component="div" className="text-red-500 text-sm" />
               </div>
               <div className="w-full sm:w-1/2">
                 <label htmlFor="longitude">Longitude</label>
-                <Field
-                  name="longitude"
-                  placeholder="Longitude"
-                  className="w-full p-3 border border-gray-300 rounded-md"
-                />
+                <Field name="longitude" placeholder="Longitude" className="w-full p-3 border border-gray-300 rounded-md" />
                 <ErrorMessage name="longitude" component="div" className="text-red-500 text-sm" />
               </div>
             </div>
@@ -190,8 +198,10 @@ const AddPlaceForm = () => {
             <ErrorMessage name="categoryName" component="div" className="text-red-500 text-sm" />
 
             <div className="space-y-8">
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-Primary transition-colors cursor-pointer">
-                <label htmlFor="images" className="block text-lg font-semibold text-gray-700 mb-2">Upload Images</label>
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center transition-colors cursor-pointer">
+                <label htmlFor="images" className="block text-lg font-semibold text-gray-700 mb-2">
+                  Upload Images
+                </label>
                 <input
                   type="file"
                   accept="image/*"
@@ -220,12 +230,7 @@ const AddPlaceForm = () => {
             {previewUrls.length > 0 && (
               <div className="flex justify-center items-center flex-wrap gap-2">
                 {previewUrls.map((url, index) => (
-                  <img
-                    key={index}
-                    src={url}
-                    alt={`preview-${index}`}
-                    className="h-10 object-cover rounded-md"
-                  />
+                  <img key={index} src={url} alt={`preview-${index}`} className="h-10 object-cover rounded-md" />
                 ))}
               </div>
             )}

@@ -77,8 +77,6 @@ const UserDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-6 font-khmer">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">User Dashboard</h1>
-
-      {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
         {stats.map((stat, i) => (
           <div key={i} className="bg-white p-5 rounded-2xl shadow-md flex items-center gap-4">
@@ -99,8 +97,6 @@ const UserDashboard = () => {
           </div>
         </Link>
       </div>
-
-      {/* Table */}
       <div className="bg-white rounded-2xl shadow-md p-6 overflow-x-auto">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-4">
           <select className="border border-gray-300 p-2 rounded-md shadow-sm">

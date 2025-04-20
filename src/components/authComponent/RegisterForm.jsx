@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router';
 
 const RegisterForm = () => {
   const formik = useFormik({
@@ -58,7 +59,7 @@ const RegisterForm = () => {
   });
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 border border-orange-400 rounded-lg shadow-md  font-[Suwannaphum]">
+    <div className="max-w-md mx-auto p-6 my-6   rounded-lg shadow-md  font-[Suwannaphum]">
       <h2 className="text-center text-2xl font-semibold text-orange-500 mb-6">បង្កើតគណនី</h2>
       <form onSubmit={formik.handleSubmit} className="space-y-4">
         <div className="flex gap-4">
@@ -166,9 +167,10 @@ const RegisterForm = () => {
 
         <p className="text-center text-sm mt-4 text-gray-600">
           មានគណនីរួចហើយ?{' '}
-          <a href="/login" className="text-orange-500 font-medium hover:underline">
-            ចូលគណនី
-          </a>
+         
+          <Link to={'/auth/login'} className="text-orange-500 font-medium hover:underline"> 
+          ចូលគណនី
+          </Link>
         </p>
       </form>
     </div>
