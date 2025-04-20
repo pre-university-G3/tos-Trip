@@ -1,16 +1,13 @@
-
 import { useEffect, useState } from "react";
 import getData from "../../services/get/getData";
 import { useParams } from "react-router";
-import Rating from "./Rating";
 
-
+import { FaStar } from "react-icons/fa";
 export function ReviewGetData() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const param = useParams();
-  console.log(reviews);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -36,33 +33,29 @@ export function ReviewGetData() {
 
     fetchReviews();
   }, [param.uuid]);
-  console.log(reviews);
-  console.log("my uuid:", param.uuid);
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   if (reviews.length === 0) return <p>No reviews for this place.</p>;
 
   return (
-    <div className="max-h-96 overflow-y-auto space-y-4 px-6">
-      {reviews.map((review, index) => (
-        <div
-          key={index}
-          className=" p-4 "
-        >
-          {/* Review Text */}
-          <p className="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-            {review.review}
-          </p>
+    <div className="space-y-4 px-6">
+      <div className="max-h-96 overflow-y-auto space-y-4">
+        {reviews.map((review, index) => (
+          <div key={index} className="p-4 border-b border-gray-200 ">
+            <p className="text-sm sm:text-base text-gray-800 ">
+              {review.review}
+            </p>
 
-          {/* Rating */}
-          <div className="mt-2">
-            <Rating value={review.rating} />
+            <div className="flex items-center mt-1 text-yellow-400 text-xs">
+              {[...Array(5)].map((_, i) => (
+                <FaStar key={i} className={i < review.rating ? "text-yellow-400" : "text-gray-300"} />
+              ))}
+              <span className="ml-2 text-gray-500">{review.rating} / 5</span>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-
-
-
   );
 }

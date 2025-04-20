@@ -4,7 +4,7 @@ import AboutContent from '../../components/layouts/banner/AboutContent'
 import AboutMentor from '../../components/layouts/banner/AboutMentor'
 import AboutTeamMember from '../../components/layouts/banner/AboutTeamMember'
 import ContactForm from '../../components/layouts/banner/ContactForm'
-import { NavbarComponents } from '../../components/layouts/NavbarComponents'
+
 
 const About = () => {
   return (
@@ -15,7 +15,6 @@ const About = () => {
       <AboutTeamMember/>
       <ContactForm/>
     </main>
-    
   )
 }
 

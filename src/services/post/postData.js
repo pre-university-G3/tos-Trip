@@ -5,21 +5,19 @@ export default async function postData(endpoint, body) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
+      mode: 'cors'
     });
 
     if (!response.ok) {
-      const errorMessage = await response.text(); 
-      throw new Error(`Error ${response.status}: ${response.statusText} - ${errorMessage}`);
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Something went wrong while posting data.");
     }
-    if (response.status === 204) {
-      return null;
-    }
+
     const data = await response.json();
     return data;
-
   } catch (error) {
     console.error("Error while posting data:", error);
-    throw error;  
+    throw error;
   }
 }
