@@ -1,24 +1,105 @@
 import React from 'react';
-import LoginForm from '../../components/authComponent/LoginForm';
-import pic from '../../assets/AngkorWat 1.png'
-const Login = () => {
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+const LoginForm = () => {
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      password: '',
+    },
+    validationSchema: Yup.object({
+      username: Yup.string().required('សូមបញ្ចូលឈ្មោះអ្នកប្រើ'),
+      password: Yup.string().required('សូមបញ្ចូលពាក្យសម្ងាត់'),
+    }),
+    onSubmit: async (values, { setSubmitting, setStatus }) => {
+      try {
+        const response = await fetch('https://tostrip.eunglyzhia.social/api/v1/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: values.username,
+            password: values.password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          setStatus(data.message || 'ការចូលបរាជ័យ');
+        } else {
+          localStorage.setItem('accessToken', data.accessToken);
+
+          setStatus('ការចូលជោគជ័យ!');
+          // Optional: redirect user
+          window.location.href = '/place';
+        }
+      } catch (error) {
+        setStatus('មានបញ្ហា! សូមព្យាយាមម្តងទៀត។');
+      } finally {
+        setSubmitting(false);
+      }
+    },
+  });
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#fff7f5] px-4 py-12">
-      <div className="flex w-full max-w-6xl rounded-xl  overflow-hidden bg-white h-[700px]">
-        
-        <div className="w-1/2 hidden md:flex">
-          <img 
-            src={pic}
-            alt="Login background"
-            className=" w-full object-cover "
-          />
-        </div>      
-        <div className="w-full md:w-1/2 p-10 flex items-center justify-center bg-[#fff7f5]">
-          <LoginForm />
-        </div>
+    <form onSubmit={formik.handleSubmit} className="w-full max-w-sm space-y-5">
+      <h2 className="text-2xl font-bold text-orange-500 text-center mb-6">ចូលគណនី</h2>
+
+      <div>
+        <label className="block text-sm text-orange-500 mb-1">ឈ្មោះអ្នកប្រើ</label>
+        <input
+          type="text"
+          name="username"
+          placeholder="ឈ្មោះអ្នកប្រើ"
+          className="w-full border border-orange-300 p-2 rounded"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.username}
+        />
+        {formik.touched.username && formik.errors.username && (
+          <div className="text-red-500 text-sm mt-1">{formik.errors.username}</div>
+        )}
       </div>
-    </div>
+
+      <div>
+        <label className="block text-sm text-orange-500 mb-1">ពាក្យសម្ងាត់</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="ពាក្យសម្ងាត់"
+          className="w-full border border-orange-300 p-2 rounded"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.password}
+        />
+        {formik.touched.password && formik.errors.password && (
+          <div className="text-red-500 text-sm mt-1">{formik.errors.password}</div>
+        )}
+      </div>
+
+      {formik.status && (
+        <div className="text-sm text-center text-orange-600">{formik.status}</div>
+      )}
+
+      <button
+        type="submit"
+        disabled={formik.isSubmitting}
+        className="w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 rounded"
+      >
+        {formik.isSubmitting ? 'កំពុងចូល...' : 'ចូល'}
+      </button>
+
+      <p className="text-center text-sm mt-4 text-gray-600">
+        មិនទាន់មានគណនី?{' '}
+        <a href="/register" className="text-orange-500 font-medium hover:underline">
+          ចុះឈ្មោះ
+        </a>
+      </p>
+    </form>
   );
 };
 
-export default Login;
+export default LoginForm;
