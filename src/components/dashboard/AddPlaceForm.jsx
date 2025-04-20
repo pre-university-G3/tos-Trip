@@ -46,12 +46,7 @@ const AddPlaceForm = () => {
       const data = await res.json();
       var urls = [];
       data?.map(e => urls.push(e.uri))
-     
       return urls;
-
-      // console.log(data);
-
-      // return data.uri || data.url || data.imageUrls || [];
     } catch (err) {
       console.error("Image upload error:", err);
       alert("Image upload failed. Please try again.");
@@ -82,16 +77,18 @@ const AddPlaceForm = () => {
       }
 
       const placeData = {
-
- 
-
-        // ...rest,
-        // latitude: lat,
-        // longitude: lng,
-        // location: `${lat},${lng}`,
-        // imageUrls,
-        // userUuid: "YOUR_STATIC_USER_UUID_HERE", 
+        name: values.name,
+        description: values.description,
+        openHours: values.openHours,
+        entryFee: parseFloat(values.entryFee),
+        latitude: lat,
+        longitude: lng,
+        location: `${lat},${lng}`,
+        categoryName: values.categoryName,
+        imageUrls,
+        // userUuid: "a3f0b122-4e3c-11ee-be56-0242ac120002", // Your static UUID
       };
+      
       console.log(placeData)
       const response = await fetch("https://tostrip.eunglyzhia.social/api/v1/places", {
         method: "POST",
