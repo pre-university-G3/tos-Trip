@@ -25,6 +25,7 @@ const LoginForm = () => {
             password: values.password,
           }),
         });
+        console.log(response)
 
         const data = await response.json();
 
@@ -34,13 +35,16 @@ const LoginForm = () => {
           localStorage.setItem('accessToken', data.accessToken);
           setStatus('ការចូលជោគជ័យ!');
           window.location.href = '/place';
+          // navigate("/");
         }
+        console.log("accessToken", data.accessToken);
       } catch (error) {
         setStatus('មានបញ្ហា! សូមព្យាយាមម្តងទៀត។');
       } finally {
         setSubmitting(false);
       }
     },
+   
   });
 
   return (

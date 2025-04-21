@@ -69,7 +69,7 @@ export default function CategoryList() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-         <div className="relative w-full sm:w-1/3 md:w-1/4">
+         <div className="relative ">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="w-[200px] border border-gray-300 p-2 rounded bg-white text-left text-gray-800 focus:outline-none focus:ring-2 focus:ring-Primary"

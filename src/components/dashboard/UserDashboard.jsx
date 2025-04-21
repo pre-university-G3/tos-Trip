@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaUsers, FaUserCheck, FaUserTimes } from "react-icons/fa";
 import { Link } from "react-router";
-import getData from "../../services/get/getData"; 
+import { fetchAllUsers } from "../../services/userService"; 
 
 const UserDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -11,28 +11,16 @@ const UserDashboard = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const data = await getData("users");
+        const data = await fetchAllUsers();
+
         if (data && data.length > 0) {
           setUsers(data);
         } else {
-          setUsers([
-            {
-              email: "ghost1@example.com",
-              date: "2025-04-01",
-              role: "ghost",
-              status: "active",
-            },
-            {
-              email: "ghost2@example.com",
-              date: "2025-04-02",
-              role: "ghost",
-              status: "banned",
-            },
-          ]);
+          setUsers([]); 
         }
       } catch (err) {
         console.error("Error fetching users:", err);
-        setError("Failed to fetch users.");
+        setError("សូម Login ម្តងទៀត (Token Expired ឬ Unauthorized)");
       } finally {
         setLoading(false);
       }
@@ -91,12 +79,13 @@ const UserDashboard = () => {
       </div>
 
       <div className="mb-4">
-        <Link to={"/auth/register"}>
+        <Link to="/Login">
           <div className="inline-block bg-blue-500 text-white px-4 py-2 rounded-md shadow hover:bg-blue-600 transition-all cursor-pointer">
             ចុះឈ្មោះ
           </div>
         </Link>
       </div>
+
       <div className="bg-white rounded-2xl shadow-md p-6 overflow-x-auto">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-4">
           <select className="border border-gray-300 p-2 rounded-md shadow-sm">

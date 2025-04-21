@@ -77,16 +77,16 @@ const AddPlaceForm = () => {
       }
 
       const placeData = {
-        name: values.name,
-        description: values.description,
-        openHours: values.openHours,
-        entryFee: parseFloat(values.entryFee),
+        name: rest.name,
+        description: rest.description,
+        openHours: rest.openHours,
+        entryFee: rest.entryFee,
         latitude: lat,
         longitude: lng,
         location: `${lat},${lng}`,
-        categoryName: values.categoryName,
         imageUrls,
-        // userUuid: "a3f0b122-4e3c-11ee-be56-0242ac120002", // Your static UUID
+        categoryName: rest.categoryName,
+        // userUuid: "YOUR_STATIC_USER_UUID_HERE",
       };
       
       console.log(placeData)
@@ -97,17 +97,14 @@ const AddPlaceForm = () => {
         },
         body: JSON.stringify(placeData),
       });
-
       if (!response.ok) {
         const errorText = await response.text();
         console.error("Server error:", response.status, errorText);
         alert("បញ្ហាក្នុងការបញ្ចូនទិន្នន័យ: " + response.status);
         return;
       }
-
       const responseData = await response.json();
       alert("🏕️ ទីកន្លែងបានបញ្ចូនដោយជោគជ័យ!");
-
       resetForm();
       setImages([]);
       setPreviewUrls([]);
@@ -116,11 +113,9 @@ const AddPlaceForm = () => {
       console.error("Error during submission:", err);
     }
   };
-
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white border-gray-300 border-2 rounded-2xl shadow-md font-[Suwannaphum] mt-10">
       <h2 className="text-2xl font-semibold mb-4 text-center">បន្ថែមទីកន្លែងថ្មី</h2>
-
       <Formik
         initialValues={{
           name: "",
@@ -168,7 +163,6 @@ const AddPlaceForm = () => {
                 <ErrorMessage name="entryFee" component="div" className="text-red-500 text-sm" />
               </div>
             </div>
-
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="w-full sm:w-1/2">
                 <label htmlFor="latitude">Latitude</label>
