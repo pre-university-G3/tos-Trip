@@ -48,11 +48,11 @@ const LoginForm = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className="w-full max-w-sm space-y-5">
+    <form onSubmit={formik.handleSubmit} className="w-full max-w-sm space-y-5 ">
       <h2 className="text-2xl font-bold text-orange-500 text-center mb-6">ចូលគណនី</h2>
 
       <div>
-        <label className="block text-sm text-orange-500 mb-1">ឈ្មោះអ្នកប្រើ</label>
+        <label className="block text-sm  text-orange-500 mb-1">ឈ្មោះអ្នកប្រើ</label>
         <input
           type="text"
           name="username"

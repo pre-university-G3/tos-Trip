@@ -59,12 +59,12 @@ const RegisterForm = () => {
   });
 
   return (
-    <div className="max-w-md mx-auto p-6 my-6   rounded-lg shadow-md  font-[Suwannaphum]">
-      <h2 className="text-center text-2xl font-semibold text-orange-500 mb-6">បង្កើតគណនី</h2>
+    <div className="max-w-md mx-auto p-6 my-6   rounded-lg  font-[Suwannaphum]">
+      <h2 className="text-center text-2xl font-semibold text-Primary mb-6">បង្កើតគណនី</h2>
       <form onSubmit={formik.handleSubmit} className="space-y-4">
         <div className="flex gap-4">
           <div className="flex-1">
-            <label className="block text-sm text-orange-500 mb-1">នាមខ្លួន</label>
+            <label className="block text-sm text-heade mb-1">នាមខ្លួន</label>
             <input
               type="text"
               name="firstName"
@@ -78,7 +78,7 @@ const RegisterForm = () => {
             )}
           </div>
           <div className="flex-1">
-            <label className="block text-sm text-orange-500 mb-1">នាមត្រកូល</label>
+            <label className="block text-sm text-heade mb-1">នាមត្រកូល</label>
             <input
               type="text"
               name="lastName"
@@ -94,7 +94,7 @@ const RegisterForm = () => {
         </div>
 
         <div>
-          <label className="block text-sm text-orange-500 mb-1">ឈ្មោះអ្នកប្រើ</label>
+          <label className="block text-sm text-heade mb-1">ឈ្មោះអ្នកប្រើ</label>
           <input
             type="text"
             name="username"
@@ -109,7 +109,7 @@ const RegisterForm = () => {
         </div>
 
         <div>
-          <label className="block text-sm text-orange-500 mb-1">អ៊ីមែល</label>
+          <label className="block text-sm text-heade mb-1">អ៊ីមែល</label>
           <input
             type="email"
             name="email"
@@ -124,7 +124,7 @@ const RegisterForm = () => {
         </div>
 
         <div>
-          <label className="block text-sm text-orange-500 mb-1">ពាក្យសម្ងាត់</label>
+          <label className="block text-sm text-heade mb-1">ពាក្យសម្ងាត់</label>
           <input
             type="password"
             name="password"
@@ -139,7 +139,7 @@ const RegisterForm = () => {
         </div>
 
         <div>
-          <label className="block text-sm text-orange-500 mb-1">បញ្ចាក់ពាក្យសម្ងាត់</label>
+          <label className="block text-sm text-heade mb-1">បញ្ចាក់ពាក្យសម្ងាត់</label>
           <input
             type="password"
             name="confirmPassword"
@@ -160,7 +160,7 @@ const RegisterForm = () => {
         <button
           type="submit"
           disabled={formik.isSubmitting}
-          className="w-full bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 rounded"
+          className="w-full bg-orange-400 hover:bg-orange-500 transition-all text-white font-semibold py-2 rounded"
         >
           {formik.isSubmitting ? 'កំពុងដំណើរការ...' : 'ចុះឈ្មោះ'}
         </button>
