@@ -8,15 +8,9 @@ const FooterComponent = () => {
   return (
     <footer className="px-6 sm:px-10 md:px-[8%] py-10 shadow-md hover:shadow-xl transition-shadow duration-300 bg-gray-100 font-[Suwannaphum]">
       <div className="max-w-7xl mx-auto">
-<<<<<<< HEAD
-        <div className="flex justify-between items-center flex-col lg:flex-row gap-8 ml-30">
-          <div className="flex justify-center lg:justify-start ">
-            <img src={logo} alt="Tos Trip logo" className="w-30 h-25" />
-=======
         <div className="flex justify-between items-center flex-col lg:flex-row gap-8">
           <div className="flex justify-center lg:justify-start">
             <img src={logo} alt="Tos Trip logo" className="w-20 h-18" />
->>>>>>> development
           </div> 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10  ">
             <div className="text-left md:text-cente​r ">
@@ -35,15 +29,9 @@ const FooterComponent = () => {
                 <li><Link to="/licenses" className="hover:text-Primary transition-colors duration-200">ការចុះឈ្មោះ</Link></li>
               </ul>
             </div>
-<<<<<<< HEAD
-            <div className="text-left md:">
-              <h4 className="text-lg mb-4 text-Primary">ទំនាក់ទំនង</h4>
-              <ul className="space-y-2 text-gray-600 text-sm">
-=======
             <div className="text-left md:text-center">
               <h4 className="text-lg mb-2 text-Primary">ទំនាក់ទំនង</h4>
               <ul className="space-y-3 text-gray-600 text-sm">
->>>>>>> development
                 <li className="flex tems-start justify-start lg:justify-start gap-2 hover:text-Primary transition-colors duration-200">
                   <MdOutlineMail className="text-sm" />
                   <a href="#">nadrayoky000@gmail.com</a>

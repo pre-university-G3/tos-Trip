@@ -32,10 +32,6 @@ createRoot(document.getElementById("root")).render(
           {/* <Route path="/category/:uuid" element={<About />} /> */}
 
         </Route>
-<<<<<<< HEAD
-  
-        <Route path="/admin" element={<Dashbard />} />
-=======
         {/* login */}
         {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/admin" element={
@@ -44,7 +40,6 @@ createRoot(document.getElementById("root")).render(
           </ProtectedAdmin>
         }
         />
->>>>>>> development
         <Route path="/admin/place" element={<PlaceMangment />} />
         <Route path="/admin/AppPlace" element={<AddPlaceForm />} />
         <Route path="/admin/AppPlace/:placeUuid" element={<EditPlaceForm />} />
