@@ -10,8 +10,9 @@ return (
        <section className='px-[8%]'>
         <MainDetailPlace />
       </section>
-      <section className='px-[8%]'><MapPlace /></section>
-      <section className="flex flex-col md:flex-row items-center justify-center w-full px-4 bg-Snow sm:px-[8%] py-10 gap-10">
+    <section className='px-[8%]'><MapPlace /></section>
+      <h1 className='text-center text-xl md:text-2xl lg:text-4xl'>មតិនិងកាវាយតម្លៃ</h1>
+      <section className="flex flex-col md:flex-row items-center justify-center w-full px-4 sm:px-[8%] py-10 gap-10">
         <div className="w-full md:w-1/2 flex justify-start items-start">
           <ReviewGetData />
         </div>

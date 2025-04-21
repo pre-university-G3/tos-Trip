@@ -21,14 +21,14 @@ const ContactForm = () => {
           </h2>
 
           <form
-            action="https://formsubmit.co/ooppa5396@gmail.com"
+            action="https://formsubmit.co/tostrip53@gmail.com"
             method="POST"
             className="space-y-4"
           >
             {/* Optional: disable captcha */}
-            {/* <input type="hidden" name="_captcha" value="false" /> */}
+            <input type="hidden" name="_captcha" value="false" />
             {/* Optional: custom redirect after submit */}
-            {/* <input type="hidden" name="_next" value="https://yourdomain.com/thank-you" /> */}
+            <input type="hidden" name="_next" value="http://localhost:5173/" />
 
             <div>
               <label className="block text-gray-700 font-medium mb-1">ឈ្មោះ</label>
