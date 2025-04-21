@@ -16,6 +16,8 @@ import AddPlaceForm from "./components/dashboard/AddPlaceForm.jsx";
 import EditPlaceForm from "./components/dashboard/EitdPlaceForm.jsx";
 import Login from "./auth/login/index.jsx";
 import Register from "./auth/register/index.jsx";
+import ProtectedAdmin from "./components/dashboard/ProtectedAdmin.jsx";
+import AdminLogin from "./components/dashboard/Login";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -30,8 +32,19 @@ createRoot(document.getElementById("root")).render(
           {/* <Route path="/category/:uuid" element={<About />} /> */}
 
         </Route>
+<<<<<<< HEAD
   
         <Route path="/admin" element={<Dashbard />} />
+=======
+        {/* login */}
+        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/admin" element={
+          <ProtectedAdmin>
+            <Dashbard />
+          </ProtectedAdmin>
+        }
+        />
+>>>>>>> development
         <Route path="/admin/place" element={<PlaceMangment />} />
         <Route path="/admin/AppPlace" element={<AddPlaceForm />} />
         <Route path="/admin/AppPlace/:placeUuid" element={<EditPlaceForm />} />
@@ -40,7 +53,7 @@ createRoot(document.getElementById("root")).render(
         {/* auth */}
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/register" element={<Register />} />
-
+        <Route path="/Login" element={<AdminLogin /> }/>
       </Routes>
     </BrowserRouter>
   </StrictMode>

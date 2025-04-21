@@ -25,16 +25,13 @@ const MainDetailPlace = () => {
   }
   return (
     <div className="container mx-auto px-4 py-10">
-      {/* <h2 className="text-black font-extrabold text-3xl md:text-4xl mb-6">{place.name}</h2>
-      <hr className="my-4 border-t border-gray-300" /> */}
-
       <div className="container mx-auto px-4 py-5 ">
         <div className="flex flex-col md:flex-row gap-6  ">
           <div className="w-full md:w-2/3">
             <img
               src={place.imageUrls?.[0]}
               alt={place.name}
-              className="w-full h-[550px] object-cover rounded-lg  "
+              className="w-full h-[550px] object-cover "
             />
           </div>
           <div className="w-full md:w-1/3 flex flex-col gap-4">
@@ -43,13 +40,12 @@ const MainDetailPlace = () => {
                 key={index}
                 src={url}
                 alt={`${place.name} small ${index + 1}`}
-                className="w-full h-[160px] object-cover rounded-md shadow-sm"
+                className="w-full h-[163px] object-cover  shadow-sm"
               />
             ))}
           </div>
         </div>
       </div>
-      {/* Description Section */}
       <section className="mt-12">
         <h2 className="text-heade font-extrabold text-2xl md:text-3xl mb-4">{place.name}</h2>
         <hr className="my-4 border-t border-gray-300" />

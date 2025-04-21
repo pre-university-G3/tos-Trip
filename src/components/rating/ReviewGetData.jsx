@@ -46,7 +46,6 @@ export function ReviewGetData() {
             <p className="text-sm sm:text-base text-gray-800 ">
               {review.review}
             </p>
-
             <div className="flex items-center mt-1 text-yellow-400 text-xs">
               {[...Array(5)].map((_, i) => (
                 <FaStar key={i} className={i < review.rating ? "text-yellow-400" : "text-gray-300"} />

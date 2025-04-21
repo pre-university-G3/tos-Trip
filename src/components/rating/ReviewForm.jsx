@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import postData from "../../services/post/postData";
 import { useParams } from "react-router";
-import { FaStar } from "react-icons/fa"; // Import star icons
+import { FaStar } from "react-icons/fa"; 
 
 const ReviewForm = () => {
   const param = useParams();
@@ -54,7 +54,7 @@ const ReviewForm = () => {
       onSubmit={handleSubmit}
       className="bg-white shadow-md rounded-lg py-10 px-10 my-10 space-y-4"
     >
-      <h2 className="text-xl font-bold">ទម្រង់វាយតម្លៃ​​</h2>
+      <h2 className="text-xl font-bold">មតិនិងកាវាយតម្លៃ</h2>
       <div className="flex items-center space-x-1">
         {[1, 2, 3, 4, 5].map((value) => (
           <FaStar
