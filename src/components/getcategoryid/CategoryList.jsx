@@ -135,7 +135,7 @@ export default function CategoryList() {
             ))}
           </div>
           {filtered.length === 0 && (
-            <p className="text-center text-gray-400 mt-10">No places found.</p>
+            <p className="text-center text-gray-400 mt-10">No places </p>
           )}
           {visibleCount < filtered.length && (
             <div className="text-center mt-6">
