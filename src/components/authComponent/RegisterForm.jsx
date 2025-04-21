@@ -1,9 +1,11 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router'; 
 
 const RegisterForm = () => {
+  const navigate = useNavigate(); 
+
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -29,9 +31,7 @@ const RegisterForm = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-
           },
-
           body: JSON.stringify({
             username: values.username,
             firstname: values.firstName,
@@ -39,7 +39,7 @@ const RegisterForm = () => {
             email: values.email,
             password: values.password,
           }),
-          mode:'cors'
+          mode: 'cors',
         });
 
         const data = await response.json();
@@ -49,6 +49,9 @@ const RegisterForm = () => {
         } else {
           setStatus('ចុះឈ្មោះបានជោគជ័យ!');
           resetForm();
+          setTimeout(() => {
+            navigate('/auth/login'); // ✅ Redirect after delay
+          }, 1500);
         }
       } catch (error) {
         setStatus('មានបញ្ហាកើតឡើង សូមព្យាយាមម្ដងទៀត។');
@@ -59,7 +62,7 @@ const RegisterForm = () => {
   });
 
   return (
-    <div className="max-w-md mx-auto p-6 my-6   rounded-lg  font-[Suwannaphum]">
+    <div className="max-w-md mx-auto p-6 my-6 rounded-lg font-[Suwannaphum]">
       <h2 className="text-center text-2xl font-semibold text-Primary mb-6">បង្កើតគណនី</h2>
       <form onSubmit={formik.handleSubmit} className="space-y-4">
         <div className="flex gap-4">
@@ -167,9 +170,8 @@ const RegisterForm = () => {
 
         <p className="text-center text-sm mt-4 text-gray-600">
           មានគណនីរួចហើយ?{' '}
-         
-          <Link to={'/auth/login'} className="text-orange-500 font-medium hover:underline"> 
-          ចូលគណនី
+          <Link to={'/auth/login'} className="text-orange-500 font-medium hover:underline">
+            ចូលគណនី
           </Link>
         </p>
       </form>

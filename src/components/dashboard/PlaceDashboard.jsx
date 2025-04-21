@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import getData from "../../services/get/getData";
-import { Link } from "react-router";
+import { Link } from "react-router"; 
 import DeletePlace from "./DeletePlace";
+import { FaMapMarkerAlt, FaList, FaClock } from "react-icons/fa";
 
 const PlaceDashboard = () => {
   const [places, setPlaces] = useState([]);
@@ -11,34 +12,25 @@ const PlaceDashboard = () => {
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [categories, setCategories] = useState([]);
+
   const stats = [
     {
-      icon: "📍", 
-      label: "ទីកន្លែងសរុប",
+      label: "ចំនួនសរុប",
       value: places.length,
-      growth: `+${places.length}`,
+      growth: "+2%",
+      icon: <FaMapMarkerAlt className="text-blue-500 text-xl" />,
     },
     {
-      icon: "🏕️", 
-      label: "ទីកន្លែងពេញនិយម",
-      value: places.filter((place) => place.reviews?.some(review => review.rating === 4)).length,
-      growth: `+${places.filter((place) => place.reviews?.some(review => review.rating === 4)).length}`,
+      label: "ប្រភេទនៃទីកន្លែងសរុប",
+      value: categories.length,
+      growth: "+1%",
+      icon: <FaList className="text-green-500 text-xl" />,
     },
     {
-      icon: "🌳", 
-      label: "ទីកន្លែងថ្មី",
-      value: places.filter((place) => {
-        const placeCreatedAt = new Date(place.createdAt);
-        const thirtyDaysAgo = new Date();
-        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-        return placeCreatedAt >= thirtyDaysAgo;
-      }).length,
-      growth: `+${places.filter((place) => {
-        const placeCreatedAt = new Date(place.createdAt);
-        const thirtyDaysAgo = new Date();
-        thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-        return placeCreatedAt >= thirtyDaysAgo;
-      }).length}`,
+      label: "កន្លែងបន្ថែមថ្មី (30ថ្ងៃ)",
+      value: filteredPlaces.length,
+      growth: "+4%",
+      icon: <FaClock className="text-yellow-500 text-xl" />,
     },
   ];
 
@@ -48,8 +40,6 @@ const PlaceDashboard = () => {
         const data = await getData("places");
         if (data) {
           setPlaces(data);
-
-         
           const uniqueCategories = [
             ...new Set(data.map((place) => place.category.name)),
           ];
@@ -108,7 +98,7 @@ const PlaceDashboard = () => {
     <div className="min-h-screen bg-gray-100 p-6 font-[Suwannaphum]">
       <h1 className="text-5xl font-bold mb-6 text-gray-800">ការគ្រប់គ្រងទីកន្លែង</h1>
 
-      {/* Stats Section */}
+      {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
         {stats.map((stat, i) => (
           <div key={i} className="bg-white p-5 rounded-2xl shadow-md flex items-center gap-4">
@@ -122,22 +112,22 @@ const PlaceDashboard = () => {
         ))}
       </div>
 
-      {/* Add Place Button */}
+      {/* Add Button */}
       <div className="flex justify-end my-10">
         <Link to="/admin/AppPlace">
-          <div className="px-5 py-2 bg-blue-500 hover:bg-blue-600 flex justify-end rounded-md text-white cursor-pointer">
-            <p>បន្ថែមទីកន្លែង +</p>
+          <div className="px-5 py-2 bg-blue-500 hover:bg-blue-600 rounded-md text-white cursor-pointer">
+            បន្ថែមទីកន្លែង +
           </div>
         </Link>
       </div>
 
-      {/* Filter and Search */}
+      {/* Filter/Search */}
       <div className="bg-white rounded-2xl shadow-md p-6 overflow-x-auto">
         <div className="flex flex-col sm:flex-row justify-end items-center gap-4 mb-4">
           <input
             type="text"
             placeholder="ស្វែងរកទីកន្លែង..."
-            className="border border-gray-300 p-3 rounded-md shadow-sm w-full sm:w-1/3"
+            className="border border-gray-200 p-3 rounded-md shadow-sm w-full sm:w-1/3"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -155,7 +145,7 @@ const PlaceDashboard = () => {
           </select>
         </div>
 
-        {/* Places Table */}
+        {/* Table */}
         <table className="w-full text-left border-collapse table-auto bg-white rounded-lg shadow-md overflow-hidden">
           <thead className="bg-gray-100 text-gray-700">
             <tr className="text-sm font-semibold">
@@ -179,9 +169,9 @@ const PlaceDashboard = () => {
                     : place.description}
                 </td>
                 <td className="px-6 text-sm text-gray-700">{place.category.name}</td>
-                <td className="px-6 h-10">
+                <td className="px-6 h-14 w-24">
                   <img
-                    src={place.imageUrls[0]}
+                    src={place.imageUrls?.[0] || "/placeholder.png"}
                     alt={place.name}
                     className="w-full h-full object-cover rounded-md shadow-sm"
                   />
@@ -191,7 +181,7 @@ const PlaceDashboard = () => {
                     className="px-4 py-2 bg-Primary cursor-pointer hover:bg-[#d4c186] text-white text-xs rounded-md transition-colors"
                     to={`/admin/AppPlace/${place.uuid}`}
                   >
-                    <p>Edit</p>
+                    Edit
                   </Link>
                   <DeletePlace placeUuid={place.uuid} />
                 </td>

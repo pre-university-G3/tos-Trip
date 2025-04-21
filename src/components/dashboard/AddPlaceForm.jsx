@@ -12,11 +12,11 @@ const validationSchema = Yup.object().shape({
   latitude: Yup.number()
     .required("តម្រូវអោយបំពេញរយៈទទឹងរ")
     .min(-90)
-    .max(90, "Latitude must be between -90 and 90"),
+    .max(900, "Latitude must be between -90 and 90"),
   longitude: Yup.number()
     .required("តម្រូវអោយបំពេញរយៈបណ្តោយ")
     .min(-180)
-    .max(180, "Longitude must be between -180 and 180"),
+    .max(1800, "Longitude must be between -180 and 180"),
   categoryName: Yup.string().required("សូមជ្រើសរើសប្រភេទ "),
 });
 
