@@ -100,10 +100,8 @@ const EditPlaceForm = () => {
 
   if (loading) return <div className="flex justify-center items-center h-screen ">
     <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
-
   </div>;
   if (!initialValues) return <p className="text-center text-red-500">មិនអាចទាញយកទិន្នន័យបានទេ</p>;
-
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-md font-[Suwannaphum] mt-10">
       <h2 className="text-2xl font-semibold mb-4 text-center">កែប្រែទីកន្លែង</h2>
@@ -137,7 +135,6 @@ const EditPlaceForm = () => {
                 <ErrorMessage name="longitude" component="div" className="text-red-500 text-sm" />
               </div>
             </div>
-
             <Field as="select" name="categoryName" className="w-full p-3 border rounded-md bg-white">
               <option value="">ជ្រើសរើសប្រភេទ</option>
               <option value="តំបន់ប្រាសាទ">តំបន់ប្រាសាទ</option>
