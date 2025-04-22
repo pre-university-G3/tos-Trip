@@ -1,6 +1,6 @@
 import React from 'react';
 import RegisterForm from '../../components/authComponent/RegisterForm';
-import pic from '../../assets/authImage/Mobile login-rafiki.png';
+import pic from '../../assets/authImage/Sign up-amico.png';
 
 const Register = () => {
   return (
