@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router";
 import { HiMenu, HiX } from "react-icons/hi";
 import logo from "../../assets/Final_Tostriplogo.png";
 import { fetchAllUsers } from "../../services/userService"; 
-
+import { FaRegUserCircle } from "react-icons/fa";
 export function NavbarComponents() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -77,13 +77,13 @@ export function NavbarComponents() {
         <div className="hidden md:flex items-center space-x-3">
           {isLoggedIn ? (
             <div className="flex items-center space-x-2 text-[#faa834] font-semibold">
-              <span className="text-xl">👤</span>
+              <span className="text-4xl"><FaRegUserCircle /></span>
               <button
                 onClick={() => {
                   handleLogout();
                   handleMobileMenuClose();
                 }}
-                className="text-black border border-[#faa834] px-4 py-2 rounded-md hover:bg-yellow-500 hover:text-white"
+                className="text-black border border-[#faa834] px-4 py-2 rounded-md hover:bg-[#faa834] hover:text-white"
               >
                 ចេញពីគណនី
               </button>
