@@ -50,8 +50,8 @@ const RegisterForm = () => {
           setStatus('ចុះឈ្មោះបានជោគជ័យ!');
           resetForm();
           setTimeout(() => {
-            navigate('/auth/login'); // ✅ Redirect after delay
-          }, 1500);
+            navigate('/auth/login'); 
+          }, 1000);
         }
       } catch (error) {
         setStatus('មានបញ្ហាកើតឡើង សូមព្យាយាមម្ដងទៀត។');
@@ -77,7 +77,7 @@ const RegisterForm = () => {
               value={formik.values.firstName}
             />
             {formik.touched.firstName && formik.errors.firstName && (
-              <div className="text-red-500 text-sm">{formik.errors.firstName}</div>
+              <div className="text-Primary text-sm">{formik.errors.firstName}</div>
             )}
           </div>
           <div className="flex-1">
@@ -86,7 +86,7 @@ const RegisterForm = () => {
               type="text"
               name="lastName"
               placeholder="នាមត្រកូល"
-              className="w-full border border-orange-300 p-2 rounded"
+              className="w-full border border-Primary p-2 rounded"
               onChange={formik.handleChange}
               value={formik.values.lastName}
             />
@@ -95,7 +95,6 @@ const RegisterForm = () => {
             )}
           </div>
         </div>
-
         <div>
           <label className="block text-sm text-heade mb-1">ឈ្មោះអ្នកប្រើ</label>
           <input
@@ -152,7 +151,7 @@ const RegisterForm = () => {
             value={formik.values.confirmPassword}
           />
           {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-            <div className="text-red-500 text-sm">{formik.errors.confirmPassword}</div>
+            <div className="text-Primary text-sm">{formik.errors.confirmPassword}</div>
           )}
         </div>
 

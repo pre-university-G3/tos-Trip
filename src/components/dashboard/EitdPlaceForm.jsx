@@ -98,7 +98,10 @@ const EditPlaceForm = () => {
     }
   };
 
-  if (loading) return <p className="text-center mt-10">កំពុងទាញយកទិន្នន័យ...</p>;
+  if (loading) return <div className="flex justify-center items-center h-screen ">
+    <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
+
+  </div>;
   if (!initialValues) return <p className="text-center text-red-500">មិនអាចទាញយកទិន្នន័យបានទេ</p>;
 
   return (
