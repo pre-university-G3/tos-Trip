@@ -15,7 +15,7 @@ const Home = () => {
         <TitleHomepage title="ដំណើរទេសចរណ៍ដ៏ប្រជាប្រិយប្រចាំប្រទេសរបស់យើង" />
         <PopularPlaces />
         <TitleHomepage title="៦កន្លែង មានទេសភាពស្អាតបំផុតនៅរដូវនេះ" />
-        {/* <CardPlace /> */}
+        
         <div className="grid grid-cols-1  items-center gap-4  justify-center">
           <CardPlace />
         </div>

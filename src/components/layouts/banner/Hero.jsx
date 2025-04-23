@@ -19,13 +19,13 @@ const Hero = () => {
           <Button color="#faa834" size="lg" className="bg-Primary text-white
                mt-10 px-6 py-3 rounded-lg flex  items-center justify-center  
              hover:bg-[#eb5a00] transition duration-300 ease-in-out cursor-pointer">
-              ដំំំណើរទេសចរណ៍
+              ដំណើរទេសចរណ៍
             <HiOutlineArrowRight className="ml-2 h-5  w-5​" />
           </Button>
         </Link>
       </div>
 
-      {/* Right Side Images */}
+    
       <div className="lg:w-1/2 flex flex-wrap justify-center items-center mt-10 lg:mt-0 gap-4">
         <img src={hero4} alt="Travel 3" className="rounded-[10px] shadow-md w-1/3 max-w-[140px] md:h-90 object-cover aspect-[9/16]" />
         <img src={hero2} alt="Travel 2" className="rounded-[10px] shadow-md w-1/3 max-w-[170px] md:h-110 object-cover aspect-[9/16]" />
