@@ -1,21 +1,29 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router"; // Correct import
+import { Link, NavLink } from "react-router"; 
 import { HiMenu, HiX } from "react-icons/hi";
 import logo from "../../assets/Final_Tostriplogo.png";
+import { useNavigate } from "react-router";
 
 export function NavbarComponents() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
+    const checkLogin = () => {
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+    };
+
+    checkLogin(); 
+    window.addEventListener("storage", checkLogin);
+    return () => window.removeEventListener("storage", checkLogin);
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-    window.location.reload();
+    localStorage.removeItem("token"); 
+    setIsLoggedIn(false); 
+    navigate("/");
   };
 
   const handleMobileMenuClose = () => setIsOpen(false);
@@ -79,14 +87,16 @@ export function NavbarComponents() {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
         <button className="md:hidden text-black text-2xl" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <HiX /> : <HiMenu />}
         </button>
       </nav>
 
-      {/* Mobile Dropdown */}
-      <div className={`md:hidden bg-white absolute w-full top-[60px] left-0 shadow-md transform transition-transform ${isOpen ? "block" : "hidden"}`}>
+      <div
+        className={`md:hidden bg-white absolute w-full top-[60px] left-0 shadow-md transform transition-transform ${
+          isOpen ? "block" : "hidden"
+        }`}
+      >
         <div className="flex flex-col items-center space-y-4 py-5">
           {menu.map((item, index) => (
             <NavLink

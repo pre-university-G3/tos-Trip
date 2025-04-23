@@ -8,6 +8,7 @@ const LoginForm = () => {
     initialValues: {
       username: '',
       password: '',
+      rememberMe: false, // បន្ថែម field ថ្មី
     },
     validationSchema: Yup.object({
       username: Yup.string().required('សូមបញ្ចូលឈ្មោះអ្នកប្រើ'),
@@ -25,7 +26,6 @@ const LoginForm = () => {
             password: values.password,
           }),
         });
-        console.log(response)
 
         const data = await response.json();
 
@@ -33,22 +33,24 @@ const LoginForm = () => {
           setStatus(data.message || 'ការចូលបរាជ័យ');
         } else {
           localStorage.setItem('accessToken', data.accessToken);
+          if (values.rememberMe) {
+            localStorage.setItem('rememberMe', 'true');
+          } else {
+            localStorage.removeItem('rememberMe');
+          }
           setStatus('ការចូលជោគជ័យ!');
           window.location.href = '/place';
-          // navigate("/");
         }
-        console.log("accessToken", data.accessToken);
       } catch (error) {
         setStatus('មានបញ្ហា! សូមព្យាយាមម្តងទៀត។');
       } finally {
         setSubmitting(false);
       }
     },
-   
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className="w-full max-w-sm space-y-5 ">
+    <form onSubmit={formik.handleSubmit} className="w-full max-w-sm space-y-5">
       <h2 className="text-2xl font-bold text-orange-500 text-center mb-6">ចូលគណនី</h2>
 
       <div>
@@ -81,6 +83,22 @@ const LoginForm = () => {
         {formik.touched.password && formik.errors.password && (
           <div className="text-red-500 text-sm mt-1">{formik.errors.password}</div>
         )}
+        
+        {/* ✅ Remember Me និង Forget password */}
+        <div className="flex justify-between items-center mt-2">
+          <label className="text-sm flex items-center gap-1 text-orange-500">
+            <input
+              type="checkbox"
+              name="rememberMe"
+              onChange={formik.handleChange}
+              checked={formik.values.rememberMe}
+            />
+            ចង់ចាំខ្ញុំ
+          </label>
+          <Link to="/auth/forgot-password" className="text-sm text-orange-500 hover:underline">
+            ភ្លេចពាក្យសម្ងាត់?
+          </Link>
+        </div>
       </div>
 
       {formik.status && (
@@ -100,7 +118,6 @@ const LoginForm = () => {
         <Link to={'/auth/register'} className="text-orange-500 font-medium hover:underline">
           ចុះឈ្មោះ
         </Link>
-      
       </p>
     </form>
   );

@@ -34,7 +34,7 @@ const FooterComponent = () => {
               <ul className="space-y-3 text-gray-600 text-sm">
                 <li className="flex tems-start justify-start lg:justify-start gap-2 hover:text-Primary transition-colors duration-200">
                   <MdOutlineMail className="text-sm" />
-                  <a href="#">nadrayoky000@gmail.com</a>
+                  <a href="#">tostrip53@gmail.com</a>
                 </li>
                 <li className="flex  items-start justify-start lg:justify-start gap-2 hover:text-Primary transition-colors duration-200">
                   <LuPhone className="text-sm" />
