@@ -25,9 +25,9 @@ const ContactForm = () => {
             method="POST"
             className="space-y-4"
           >
-            {/* Optional: disable captcha */}
+            
             <input type="hidden" name="_captcha" value="false" />
-            {/* Optional: custom redirect after submit */}
+            
             <input type="hidden" name="_next" value="http://localhost:5173/" />
 
             <div>

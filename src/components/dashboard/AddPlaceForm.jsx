@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Alert } from "flowbite-react";  // Make sure to import Flowbite Alert
+import { Alert } from "flowbite-react";  
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("តម្រូវអោយបំពេញឈ្មោះ"),
