@@ -54,7 +54,7 @@ const EditPlaceForm = () => {
   };
 
   const uploadImages = async () => {
-    if (images.length === 0) return previewUrls; 
+    if (images.length === 0) return previewUrls;
     try {
       const form = new FormData();
       images.forEach((img) => form.append("files", img));
@@ -108,18 +108,21 @@ const EditPlaceForm = () => {
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
         {({ values }) => (
           <Form className="space-y-4">
+            <label htmlFor="name">ឈ្មោះទីកន្លែង</label>
             <Field name="name" placeholder="ឈ្មោះទីកន្លែង" className="w-full p-3 border rounded-md" />
             <ErrorMessage name="name" component="div" className="text-red-500 text-sm" />
-
+            <label htmlFor="description">ពិពណ៌នា</label>
             <Field as="textarea" name="description" placeholder="ពិពណ៌នាអំពីទីកន្លែង" rows="6" className="w-full p-3 border rounded-md" />
             <ErrorMessage name="description" component="div" className="text-red-500 text-sm" />
 
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="w-full sm:w-1/2">
+                <label htmlFor="openHours">ម៉ោងបើក</label>
                 <Field name="openHours" placeholder="ម៉ោងបើក" className="w-full p-3 border rounded-md" />
                 <ErrorMessage name="openHours" component="div" className="text-red-500 text-sm" />
               </div>
               <div className="w-full sm:w-1/2">
+              <label htmlFor="entryFee">ថ្លៃចូល</label>
                 <Field name="entryFee" type="number" placeholder="ថ្លៃចូល" className="w-full p-3 border rounded-md" />
                 <ErrorMessage name="entryFee" component="div" className="text-red-500 text-sm" />
               </div>
@@ -128,9 +131,11 @@ const EditPlaceForm = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="w-full sm:w-1/2">
                 <Field name="latitude" placeholder="Latitude" className="w-full p-3 border rounded-md" />
+                <label htmlFor="latitude">Latitude</label>
                 <ErrorMessage name="latitude" component="div" className="text-red-500 text-sm" />
               </div>
               <div className="w-full sm:w-1/2">
+              <label htmlFor="longitude">Longitude</label>
                 <Field name="longitude" placeholder="Longitude" className="w-full p-3 border rounded-md" />
                 <ErrorMessage name="longitude" component="div" className="text-red-500 text-sm" />
               </div>
