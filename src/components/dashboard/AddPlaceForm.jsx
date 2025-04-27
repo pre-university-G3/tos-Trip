@@ -1,30 +1,35 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { Alert } from "flowbite-react";  // Make sure to import Flowbite Alert
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("តម្រូវអោយបំពេញឈ្មោះ"),
   description: Yup.string().required("តម្រូវអោយបំពេញការពិពណ៌នា"),
   openHours: Yup.string().required("តម្រូវអោយបំពេញម៉ោងបើក"),
   entryFee: Yup.number()
-    .required("តម្រូវអោយបំពេញថ្លៃចូល")
+    .required("តម្រូវអោយបញ្ចូលថ្លៃចូល")
     .min(0, "តម្លៃចូលត្រូវតែជាសូន្យ ឬជាលេខវិជ្ជមាន"),
   latitude: Yup.number()
-    .required("តម្រូវអោយបំពេញរយៈទទឹងរ")
+    .required("តម្រូវអោយបញ្ចូលរយៈទទឹង")
     .min(-90)
-    .max(900, "Latitude must be between -90 and 90"),
+    .max(90, "Latitude must be between -90 and 90"),
   longitude: Yup.number()
-    .required("តម្រូវអោយបំពេញរយៈបណ្តោយ")
+    .required("តម្រូវអោយបញ្ចូលរយៈបណ្តោយ")
     .min(-180)
-    .max(1800, "Longitude must be between -180 and 180"),
+    .max(180, "Longitude must be between -180 and 180"),
   categoryName: Yup.string().required("សូមជ្រើសរើសប្រភេទ "),
 });
 
 const AddPlaceForm = () => {
-  const [imageURLs, setImageURLs] = useState([])
+  const [imageURLs, setImageURLs] = useState([]);
   const [images, setImages] = useState([]);
   const [previewUrls, setPreviewUrls] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");  // Success message state
+  const [errorMessage, setErrorMessage] = useState("");  // Error message state
+  const [uploadErrorMessage, setUploadErrorMessage] = useState(""); // Image upload error state
+
   const handleImageChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
     setImages(selectedFiles);
@@ -45,12 +50,11 @@ const AddPlaceForm = () => {
 
       const data = await res.json();
       var urls = [];
-      data?.map(e => urls.push(e.uri))
+      data?.map((e) => urls.push(e.uri));
       return urls;
     } catch (err) {
       console.error("Image upload error:", err);
-      alert("Image upload failed. Please try again.");
-      
+      setUploadErrorMessage("ការផ្ទុករូបភាពបរាជ័យ។ សូមព្យាយាមម្តងទៀត.");
       return [];
     } finally {
       setUploading(false);
@@ -61,18 +65,13 @@ const AddPlaceForm = () => {
     try {
       const imageUrls = await uploadImages();
 
-      // if (!imageUrls || imageUrls.length === 0) {
-      //   alert("សូមជ្រើសរើសរូបភាពមុនពេលបញ្ចូន");
-      //   return;
-      // }
-
       const { latitude, longitude, ...rest } = values;
 
       const lat = parseFloat(latitude);
       const lng = parseFloat(longitude);
 
       if (isNaN(lat) || isNaN(lng)) {
-        alert("ទីតាំងមិនត្រឹមត្រូវទេ");
+        setErrorMessage("ទីតាំងមិនត្រឹមត្រូវទេ");
         return;
       }
 
@@ -86,10 +85,9 @@ const AddPlaceForm = () => {
         location: `${lat},${lng}`,
         imageUrls,
         categoryName: rest.categoryName,
-        // userUuid: "YOUR_STATIC_USER_UUID_HERE",
       };
-      
-      console.log(placeData)
+
+      console.log(placeData);
       const response = await fetch("https://tostrip.eunglyzhia.social/api/v1/places", {
         method: "POST",
         headers: {
@@ -97,25 +95,32 @@ const AddPlaceForm = () => {
         },
         body: JSON.stringify(placeData),
       });
+
       if (!response.ok) {
         const errorText = await response.text();
         console.error("Server error:", response.status, errorText);
-        alert("បញ្ហាក្នុងការបញ្ចូនទិន្នន័យ: " + response.status);
+        setErrorMessage("បញ្ហាក្នុងការបញ្ចូនទិន្នន័យ: " + response.status);
         return;
       }
+
       const responseData = await response.json();
-      alert("🏕️ ទីកន្លែងបានបញ្ចូនដោយជោគជ័យ!");
+      setSuccessMessage("🏕️ ទីកន្លែងបានបញ្ចូនដោយជោគជ័យ!");
       resetForm();
       setImages([]);
       setPreviewUrls([]);
     } catch (err) {
-      alert("មានបញ្ហាពេលបញ្ចូនទិន្នន័យ");
+      setErrorMessage("មានបញ្ហាពេលបញ្ចូនទិន្នន័យ");
       console.error("Error during submission:", err);
     }
   };
+
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white border-gray-300 border-2 rounded-2xl shadow-md font-[Suwannaphum] mt-10">
       <h2 className="text-2xl font-semibold mb-4 text-center">បន្ថែមទីកន្លែងថ្មី</h2>
+
+
+
+
       <Formik
         initialValues={{
           name: "",
@@ -251,6 +256,25 @@ const AddPlaceForm = () => {
                 "បញ្ជូន"
               )}
             </button>
+
+            {successMessage && (
+              <Alert color="success" className="mb-4" onDismiss={() => setSuccessMessage("")}>
+                <span>{successMessage}</span>
+              </Alert>
+            )}
+
+            {errorMessage && (
+              <Alert color="failure" className="mb-4" onDismiss={() => setErrorMessage("")}>
+                <span>{errorMessage}</span>
+              </Alert>
+            )}
+
+            {uploadErrorMessage && (
+              <Alert color="failure" className="mb-4" onDismiss={() => setUploadErrorMessage("")}>
+                <span>{uploadErrorMessage}</span>
+              </Alert>
+            )}
+
           </Form>
         )}
       </Formik>

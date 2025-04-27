@@ -23,7 +23,9 @@ const CategoryPage = () => {
   }, [uuid]);
 
   if (!category) {
-    return <div className="p-6 text-gray-600">Loading...</div>;
+    return <div className="flex justify-center items-center h-48">
+      <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
+    </div>;
   }
   return (
     <div className="p-6 sm:p-10 px-[5%] w-full">
@@ -38,11 +40,11 @@ const CategoryPage = () => {
             }}
           >
             <div className="absolute inset-0   grayscale-25 rounded-lg"></div>
-            <div className="absolute top-1/2 left-1/2 bg-black/30 backdrop-blur-none rounded-sm  p-10 transform -translate-x-1/2 -translate-y-1/2 text-heade z-10 text-center px-4">
+            <div className="absolute top-1/2 left-1/2 bg-black/30 backdrop-blur-none rounded-sm  p-10 transform -translate-x-1/2 -translate-y-1/2 text-heade z-10 text-center px-2">
               <h1 className="text-3xl sm:text-5xl text-Primary md:text-6xl font-bold mb-4 bg-black-40">
                 {category.name}
               </h1>
-              <p className="text-sm sm:text-base md:text-lg text-white max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base line-clamp-3 md:line-clamp-5 md:text-lg text-white max-w-2xl mx-auto">
                 {category.description}
               </p>
             </div>

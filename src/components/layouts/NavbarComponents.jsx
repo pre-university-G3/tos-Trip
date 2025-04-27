@@ -9,6 +9,7 @@ export function NavbarComponents() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
+  // Check login status and fetch user data
   useEffect(() => {
     const checkLogin = () => {
       const token = localStorage.getItem("token");
@@ -20,13 +21,16 @@ export function NavbarComponents() {
     return () => window.removeEventListener("storage", checkLogin);
   }, []);
 
+
   const handleLogout = () => {
     localStorage.removeItem("token"); 
     setIsLoggedIn(false); 
     navigate("/");
   };
 
+
   const handleMobileMenuClose = () => setIsOpen(false);
+
 
   const menu = [
     { path: "/", title: "ទំព័រដើម" },
@@ -35,23 +39,21 @@ export function NavbarComponents() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-[#ffff] shadow-md font-[Suwannaphum]">
+    <header className="sticky top-0 z-50 bg-white shadow-md font-[Suwannaphum]">
       <nav className="max-w-screen-2xl mx-auto py-4 px-6 md:px-[7%] flex items-center justify-between">
-        {/* Logo */}
+        
         <NavLink to="/">
           <img src={logo} alt="logo" className="h-16 object-cover" />
         </NavLink>
 
-        {/* Desktop Menu */}
+        
         <div className="hidden md:flex space-x-6 gap-15">
           {menu.map((item, index) => (
             <NavLink
               key={index}
               to={item.path}
               className={({ isActive }) =>
-                isActive
-                  ? "text-[#faa834] font-semibold"
-                  : "text-black hover:text-[#faa834]"
+                isActive ? "text-[#faa834] font-semibold" : "text-black hover:text-[#faa834]"
               }
             >
               {item.title}
@@ -59,26 +61,29 @@ export function NavbarComponents() {
           ))}
         </div>
 
-        {/* Desktop Auth Area */}
+        
         <div className="hidden md:flex items-center space-x-3">
           {isLoggedIn ? (
             <div className="flex items-center space-x-2 text-[#faa834] font-semibold">
-              <span className="text-xl">👤</span>
+              <span className="text-4xl"><FaRegUserCircle /></span>
               <button
-                onClick={handleLogout}
-                className="text-black border border-[#faa834] px-4 py-2 rounded-md hover:bg-yellow-500 hover:text-white"
+                onClick={() => {
+                  handleLogout();
+                  handleMobileMenuClose();
+                }}
+                className="text-black border border-[#faa834] px-4 py-2 rounded-md hover:bg-[#faa834] hover:text-white"
               >
                 ចេញពីគណនី
               </button>
             </div>
           ) : (
             <>
-              <Link to="/auth/login">
+              <Link to="/auth/login" onClick={handleMobileMenuClose}>
                 <div className="border border-[#faa834] text-black px-4 py-2 rounded-md hover:bg-yellow-500 hover:text-white">
                   ចូលគណនី
                 </div>
               </Link>
-              <Link to="/auth/register">
+              <Link to="/auth/register" onClick={handleMobileMenuClose}>
                 <div className="bg-[#faa834] text-white px-4 py-2 rounded-md hover:bg-yellow-600">
                   ចុះឈ្មោះ
                 </div>

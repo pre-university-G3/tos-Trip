@@ -98,7 +98,7 @@ const PlaceDashboard = () => {
     <div className="min-h-screen bg-gray-100 p-6 font-[Suwannaphum]">
       <h1 className="text-5xl font-bold mb-6 text-gray-800">ការគ្រប់គ្រងទីកន្លែង</h1>
 
-      {/* Stats */}
+     
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
         {stats.map((stat, i) => (
           <div key={i} className="bg-white p-5 rounded-2xl shadow-md flex items-center gap-4">

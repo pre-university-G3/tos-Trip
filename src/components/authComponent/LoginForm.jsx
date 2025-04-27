@@ -54,7 +54,7 @@ const LoginForm = () => {
       <h2 className="text-2xl font-bold text-orange-500 text-center mb-6">ចូលគណនី</h2>
 
       <div>
-        <label className="block text-sm  text-orange-500 mb-1">ឈ្មោះអ្នកប្រើ</label>
+        <label className="block text-sm  text-Primary mb-1">ឈ្មោះអ្នកប្រើ</label>
         <input
           type="text"
           name="username"
@@ -65,12 +65,12 @@ const LoginForm = () => {
           value={formik.values.username}
         />
         {formik.touched.username && formik.errors.username && (
-          <div className="text-red-500 text-sm mt-1">{formik.errors.username}</div>
+          <div className="text-Primary text-sm mt-1">{formik.errors.username}</div>
         )}
       </div>
 
       <div>
-        <label className="block text-sm text-orange-500 mb-1">ពាក្យសម្ងាត់</label>
+        <label className="block text-sm text-Primary mb-1">ពាក្យសម្ងាត់</label>
         <input
           type="password"
           name="password"
@@ -81,7 +81,7 @@ const LoginForm = () => {
           value={formik.values.password}
         />
         {formik.touched.password && formik.errors.password && (
-          <div className="text-red-500 text-sm mt-1">{formik.errors.password}</div>
+          <div className="text-Primary text-sm mt-1">{formik.errors.password}</div>
         )}
         
         {/* ✅ Remember Me និង Forget password */}
@@ -102,7 +102,7 @@ const LoginForm = () => {
       </div>
 
       {formik.status && (
-        <div className="text-sm text-center text-orange-600">{formik.status}</div>
+        <div className="text-sm text-center text-Primary">{formik.status}</div>
       )}
 
       <button
@@ -115,7 +115,7 @@ const LoginForm = () => {
 
       <p className="text-center text-sm mt-4 text-gray-600">
         មិនទាន់មានគណនី?{' '}
-        <Link to={'/auth/register'} className="text-orange-500 font-medium hover:underline">
+        <Link to={'/auth/register'} className="text-Primaryfont-medium hover:underline">
           ចុះឈ្មោះ
         </Link>
       </p>

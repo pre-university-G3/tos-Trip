@@ -100,7 +100,8 @@ export default function CategoryList() {
       <hr className="my-8 border-t border-gray-300" />
       {loading ? (
         <div className="flex justify-center items-center mt-10">
-          <Spinner aria-label="Loading places..." size="xl" />
+         <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
+
         </div>
       ) : (
         <>
@@ -132,10 +133,10 @@ export default function CategoryList() {
                   <Rating placeUuid={place.uuid} />
                 </div>
               </div>
-            ))}
+            ))} 
           </div>
           {filtered.length === 0 && (
-            <p className="text-center text-gray-400 mt-10">No places </p>
+            <p className="text-center text-gray-400 mt-10">គ្នានទីកន្លែងដែលអ្នកស្វែងរកទេនោះទេ </p>
           )}
           {visibleCount < filtered.length && (
             <div className="text-center mt-6">

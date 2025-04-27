@@ -5,9 +5,9 @@ import pic from '../../assets/authImage/Mobile login-rafiki.png';
 const Register = () => {
   return (
     <div className="min-h-screen overflow-hidden flex items-center justify-center  px-4 ">
-      <div className="flex w-full max-w-6xl rounded-3xl shadow-lg   bg-white">
+      <div className="flex w-full max-w-6xl rounded-3xl shadow-lg   bg-[#fcf5f5]">
         {/* Left Side Image */}
-        <div className="w-1/2 overflow-hidden md:flex items-center justify-center bg-[#ffe9e2] p-8  ">
+        <div className="w-1/2 overflow-hidden md:flex items-center justify-center bg-[#fcf5f5] p-8  ">
           <img 
             src={pic} 
             alt="Register" 
@@ -16,9 +16,8 @@ const Register = () => {
         </div>
 
 
-        <div className="w-full md:w-1/2 flex items-center justify-center bg-[#fff7f5] px-8 overflow-hidden">
+        <div className="w-full md:w-1/2 flex items-center justify-center bg-[#fcf5f5]  px-8 overflow-hidden">
           <div className="w-full max-w-md ">
-            
             <RegisterForm />
           </div>
         </div>
